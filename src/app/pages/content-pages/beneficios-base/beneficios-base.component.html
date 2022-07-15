@@ -1,0 +1,655 @@
+<!--Login Page Starts-->
+<div class="container-fluid" ngStyle.xl="display:block" ngStyle.lg="display:block" ngStyle.md="display:block" ngStyle.sm="display:block"
+  ngStyle.xs="display:none" >
+
+
+
+  <div class="row bg-white pt-2" *ngIf="index == 0">
+    <div class="col-2 float-left mb-2" ngClass.sm="col-12 text-center" ngClass.md="col-12 text-center"
+      ngClass.lg="col-12 text-center" ngStyle.xl="col-12 text-center">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header mb-2"
+        ngClass.lg="img-header-big" ngClass.xl="img-header-big" ngClass.md="img-header-big" ngClass.sm="img-header-big" />
+
+    </div>
+  <hr class="separador p-0" />
+  </div>
+
+  <!-- Empieza header-->
+  <div class="row  bg-white pb-0 pt-2" *ngIf="index">
+    <div class="col-2 float-left mb-2" ngClass.sm="text-center" ngClass.xs="col-12 text-center">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header ">
+    </div>
+    <div class="col-10 text-left pt-1" style="padding-left:16%; " *ngIf="index">
+      <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="w-50 mt-2 tranquilidad-a-tu-alcance">
+    </div>
+<hr class="separador p-0" />
+  </div>
+  <!-- Termina header-->
+
+
+
+</div>
+
+
+
+<div class="container-fluid bg-blanco">
+  <div class="row d-flex-center pt-3 bg-blanco" *ngIf="index > 1 && index < 7">
+    <div class="col-12 text-center p-0 ">
+      <div class="titulo-beneficios-base">
+        Beneficios Base
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex-center pt-3" *ngIf="index > 6">
+    <div class="col-12 text-center p-0">
+      <div class="titulo-beneficios-a-la-medida">
+        Beneficios a la Medida
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row d-flex-center  pt-2 bg-blanco">
+    <div class="col-12 text-center p-0" *ngIf="index == 0" ngStyle.lg="display:none" ngStyle.md="display:none"
+      ngStyle.sm="display:none" ngStyle.xs="display:block">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header" />
+      <hr class="separador mt-2 mb-1" />
+    </div>
+
+    <div class="col-12 text-center p-0 "  *ngIf="index == 1">
+      <h2 class="mb-2">Ingresa tu CURP</h2>
+     <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 2">
+      <div class="subtitulo-beneficios">Repatriación a México
+        <br>(por fallecimiento en EUA o Canadá)
+      </div>
+
+      <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 3">
+      <i class="flecha fas fa-arrow-left fa-2x float-left ml-2" matStepperPrevious (click)="backStep(stepper)"></i>
+      <div class="subtitulo-beneficios">Servicio funerario <br>(en México)</div>
+      <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 4">
+      <i class="flecha fas fa-arrow-left fa-2x float-left ml-2" matStepperPrevious (click)="backStep(stepper)"></i>
+      <div class="subtitulo-beneficios">Seguro de vida <br>($50,000 MXN)</div>
+
+      <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 5">
+      <i class="flecha fas fa-arrow-left fa-2x float-left ml-2" matStepperPrevious (click)="backStep(stepper)"></i>
+      <div class="subtitulo-beneficios">Educación financiera <br>(para que te rinda más tu dinero)</div>
+
+      <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 6">
+      <i class="flecha fas fa-arrow-left fa-2x float-left ml-2" matStepperPrevious (click)="backStep(stepper)"></i>
+      <div class="subtitulo-beneficios">Cuenta digital <br>(con tarjeta de débito en México)</div>
+      <hr class="separador mt-1 mb-1" />
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center p-0" *ngIf="index == 7">
+      <i class="flecha fas fa-arrow-left fa-2x float-left ml-2" matStepperPrevious (click)="backStep(stepper)"></i>
+      <div class="subtitulo-beneficios">Llamadas ilimitadas <br>(desde México)</div>
+      <hr class="separador mt-1 mb-1" />
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-1">
+  <div class="row m-0">
+    <div class="col-12">
+      <mat-stepper [linear]="true" class="example-stepper stepper-beneficios" #stepper>
+        <mat-step label="" *ngIf="!completarContratacion">
+          <div class="col-12 auth-img-bg mt-3" style="height: 70vh;">
+            <!-- <ngb-carousel class="w-100"
+            (swipeleft)="swipe($event.type)"
+            (swiperight)="swipe($event.type)"> -->
+
+            <ngb-carousel class="w-100" [interval]="false">
+
+              <ng-template ngbSlide>
+                <div class="col-12 text-center">
+                  <div class="titular-bienvenido">Bienvenido a México Lindo Contigo.</div>
+                  <p class="text-center mt-1 somos">Somos la central digital de soluciones para proteger el sustento y la salud de tu familia en México.
+                  </p>
+                </div>
+                <div class="picsum-img-wrapper mt-1" ngStyle.lg="height: 359px" ngStyle.xs="height: 300px"
+                  ngStyle.sm="height: 338px">
+                  <div class="row iconos-home">
+                    <div class="col-xs-5">
+                      <img class="img-thumbnail" src="../../../../assets/img/elements/simple.svg">
+                      <p class="fontResponsive">Simple</p>
+                    </div>
+                    <div class="col-xs-5">
+                      <img class="img-thumbnail" src="../../../../assets/img/elements/segura.svg">
+                      <p class="fontResponsive">Segura</p>
+                    </div>
+                    <div class="col-xs-5">
+                      <img class="img-thumbnail" src="../../../../assets/img/elements/centralizada.svg">
+                      <p class="fontResponsive">Centralizada</p>
+                    </div>
+                    <div class="col-xs-5">
+                      <img class="img-thumbnail" src="../../../../assets/img/elements/alamedida.svg">
+                      <p class="fontResponsive">A la Medida</p>
+                    </div>
+                    <div class="col-xs-5">
+                      <img class="img-thumbnail" src="../../../../assets/img/elements/accesible.svg">
+                      <p class="fontResponsive">Accesible</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="col-12 text-center">
+                  <!-- <div class="titular-bienvenido">Bienvenido a México Lindo Contigo.</div> -->
+                  <p class="text-center mt-1 somos">Aquí puedes encontrar beneficios ofrecidos por empresas líderes y
+                    armar tu propio plan.</p>
+                </div>
+                <div class="picsum-img-wrapper mt-1" ngStyle.lg="height: 359px" ngStyle.xs="height: 300px"
+                  ngStyle.sm="height: 338px">
+                  <div class="row iconos-home">
+                    <div class="col-xs-5 col-lg-3 col-md-3">
+                      <img class="img-thumbnail" src="../../../../assets/img/titular/anemex.svg">
+                    </div>
+                    <div class="col-xs-5 col-lg-3 col-md-3">
+                      <img class="img-thumbnail" src="../../../../assets/img/titular/chubb.svg">
+                    </div>
+                    <div class="col-xs-5 col-lg-3 col-md-3">
+                      <img class="img-thumbnail" src="../../../../assets/img/titular/gnp.svg">
+                    </div>
+                    <div class="col-xs-5 col-lg-3 col-md-3">
+                      <img class="img-thumbnail" src="../../../../assets/img/titular/mutuus.svg">
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper">
+                  <div class="row text-center">
+                    <div class="col-lg-8 offset-lg-2 mt-1" style="min-height: 380px;">
+                      <p class="fontResponsiveSlider">Recomendamos que el titular de tu plan sea la persona de tu
+                        familia que vive o trabaja temporalmente en Estados Unidos o Canadá. <sup>(1)</sup></p>
+                      <div class="clear10"></div>
+                      <p class="fontResponsiveSlider">Si no eres tú, compártele esta app o pídele que ingrese a
+                        <a href="https://app.mexicolindocontigo.com" target="_blank"><b>app.mexicolindocontigo.com</b></a> para
+                        conocernos.
+                        <sup>(2)</sup>
+                      </p>
+                      <i class="fas fa-share-alt fa-2x icono-compartir m-2" (click)='share()'></i>
+                      <p class="text-pink" (click)='share()'>Compartir</p>
+                      <div class="condiciones">(1) El servicio es ofrecido desde México y el titular debe tener CURP.
+                      </div>
+                      <div class="condiciones">(2) Los beneficios de nuestros planes están sujetos a elegibilidad.</div>
+                    </div>
+
+                  </div>
+                </div>
+              </ng-template>
+              <ng-template ngbSlide>
+                <div class="picsum-img-wrapper" style="min-height: 470px">
+                  <div class="row text-center">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-12">
+                          <p class="fontResponsiveSlider">El plan incluye dos tipos de beneficios:</p>
+                        </div>
+                        <div class="dos-col">
+                          <div class="col-uno">
+                            <img class="img-thumbnail" src="../../../../assets/img/elements/simple.svg">
+                            <p class="fontResponsive m-0"><b>Beneficios Base</b></p>
+                            <p class="fontResponsive" style="text-transform: none !important;">(incluidos en el costo del plan)
+                            </p>
+                          </div>
+                          <div class="col-dos">
+                            <img class="img-thumbnail" src="../../../../assets/img/elements/alamedida.svg">
+                            <p class="fontResponsive m-0"><b>Beneficios a la Medida</b></p>
+                            <p class="fontResponsive" style="text-transform: none !important;">(disponibles con costo
+                              adicional)</p>
+                          </div>
+                          <p class="comencemos">¿Listo? ¡Comencemos!</p>
+                          <div  class="condiciones-center col-10 offset-1">
+
+                            <div style="display: inherit;" class=" fontResponsiveSliderNotes lh-13 text-center mt-1 mb-1 ">
+                              <mat-checkbox class="example-margin text-center" [(ngModel)]="checkedAviso"
+                                ngInit="checked=true">
+                              </mat-checkbox>
+                              &nbsp;
+                              <span class="condiciones-center h-13 text-center" >
+                                <u>
+                                  <a (click)="openModal('a')">Acepto los T&eacute;rminos & Condiciones</a>&nbsp;y&nbsp;<a (click)="openModal('b')">el Aviso de Privacidad.</a>
+                                </u>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 vCenter mt-4">
+                          <button *ngIf="checkedAviso" class="btn btn-blue mt-1" (click)="changeStepInicial(stepper)"
+                            style="width: 21rem;">Continuar</button>
+                        </div>
+                        <div class="clear15"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </div>
+        </mat-step>
+        <!--Step CURP-->
+        <mat-step label="" *ngIf="!completarContratacion">
+          <form [formGroup]="firstFormGroup">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 text-center mt-2">
+                  <p class="texto-exclusivo">Nuestros servicios son exclusivos para mexicanos por lo que necesitamos que el titular tenga CURP.</p>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <input type="text" [maxlength]=18 class="mt-1" formControlName="curp" class="form-control curp"
+                      placeholder="CURP (18 dígitos)" (click)="inputCurp(chkMayor, chkMenor)" [ngClass]="{
+                        'is-invalid': s1Submitted && s1.curp.invalid,
+                        'is-valid': s1Submitted && !s1.curp.invalid
+                      }" required />
+                    <div *ngIf="
+                        s1Submitted &&
+                        s1.curp.errors?.required
+                      " class="help-block mt-1 text-danger">
+                      <i class="ft-alert-circle align-middle"></i> El CURP es requerido.
+                    </div>
+                    <div *ngIf="s1Submitted && (s1.curp.errors?.maxlength || s1.curp.errors?.minlength)"
+                      class="text-danger">La
+                      CURP debe ser de 18 dígitos.
+                    </div>
+                    <div *ngIf="s1Submitted && s1.curp.errors?.pattern" class="text-danger">El formato de la
+                      CURP no es correcto.
+                    </div>
+                  </div>
+                  <div>
+                    <a class="btn btn-green btn-block" href="https://www.gob.mx/curp/" target="_blank">Saber cual es mi
+                      CURP</a>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group input-group-lg mt-2">
+                        <!-- <select class="form-control input-form-datos mb-1 p-0 " formControlName="lada" placeholder="Lada"
+                          [ngClass]="{ 'is-invalid': s1Submitted && s1.lada.value == '0' }">
+                          <option value="0" disabled>Lada</option>
+                          <option value="40">🇨🇦 +1</option>
+                          <option value="70">🇺🇸 +1</option>
+                          <option value="142">🇲🇽 +52</option>
+                        </select> -->
+                          <p-dropdown #cmbPais [options]="countries" class="form-control input-form-datos mb-1 p-0 "
+                            optionLabel="name" formControlName="lada" placeholder="País" (onChange)="onChangeLada($event)"
+                            [ngClass]="{ 'is-invalid ng-invalid ng-dirty': s1Submitted && s1.lada.value == '0' }">
+                            <ng-template pTemplate="selectedItem">
+                              <div class="country-item country-item-value" *ngIf="selectedCountry">
+                                <div>
+                                  <img [src]="selectedCountry.imgSrc" width="20" />
+                                  {{ selectedCountry.name }}
+                                </div>
+                              </div>
+                            </ng-template>
+                            <ng-template let-country pTemplate="item">
+                              <div>
+                                <div class="text-left">
+                                  <img [src]="country.imgSrc" width="20" />
+                                  {{country.name}}
+                                </div>
+                              </div>
+                            </ng-template>
+                          </p-dropdown>
+                        <input type="text" class="form-control input-form-datos border" style="width: 4em !important;"
+                        [maxlength]=10 formControlName="telefono" placeholder="Teléfono" (input)="inputValidatorNumeros($event)"
+                        [ngClass]="{ 'is-invalid': s1Submitted && s1.telefono.errors }">
+                      </div>
+                      <div *ngIf="
+                     s1Submitted &&
+                     (s1.telefono.errors?.required || s1.lada.value == '0')
+                   " class="help-block mt-1 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> El país y teléfono es requerido.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                  <div class="toggles">
+                    <div class="col-izq-toggle">
+                      <mat-slide-toggle #chkMenor name="mayor56" class="btn btn-inactive btn-block mt-1"
+                        (change)="validaCurp('Menor', $event, chkMayor)" [checked]="checkedMenor"
+                        [ngClass]="{'btn-selected': checkedMenor}">
+                        <p class="lh-12" style="font-size:1em !important; line-height: 13px !important;">
+                          Soy <u>menor</u>
+                          <br>de 56 años
+                        </p>
+                      </mat-slide-toggle>
+                    </div>
+                    <div class="col-der-toggle">
+                      <mat-slide-toggle #chkMayor name="menor56" class="btn btn-inactive btn-block mt-1"
+                        (change)="validaCurp('Mayor', $event, chkMenor)" [checked]="checkedMayor"
+                        [ngClass]="{'btn-selected': checkedMayor}">
+                        <p class="lh-12" style="font-size:1em !important; line-height: 13px !important;">
+                          Soy <u>mayor</u>
+                          <br>
+                          de 56 años
+                        </p>
+                      </mat-slide-toggle>
+                    </div>
+                  </div>
+                  <p class=" fontResponsiveSliderNotes lh-13 text-left mt-1 mb-1">
+                    <mat-checkbox class="example-margin text-left" formControlName="chk" required [ngClass]="{
+                      'is-invalid': s1Submitted && s1.chk.invalid,
+                      'is-valid': s1Submitted && !s1.chk.invalid
+                    }">
+                      <p class="condiciones lh-13">
+                        Acepto que si la CURP que registro es incorrecta, no podré usar los beneficios cuando los necesite.
+                      </p>
+                      <div *ngIf="
+                        s1Submitted &&
+                        (s1.chk.invalid || s1.chk.errors?.required)
+                      " class="help-block mt-1 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> Campo
+                        requerido
+                      </div>
+                    </mat-checkbox>
+
+                  </p>
+                  <button (click)="changeStepCurp(stepper, 0)" class="btn btn-blue btn-block mt-2"
+                    *ngIf="this.firstFormGroup.valid && (this.checkedMayor || this.checkedMenor) && cmbPais.value != '0'">
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+
+        <mat-step label="" *ngIf="completarContratacion">
+          <form [formGroup]="firstFormGroupCURP">
+            <div class="container">
+              <div class="row">
+                <div class="col-12 text-center mt-2">
+                  <p class="texto-exclusivo">Nuestros servicios son exclusivos para mexicanos por lo que necesitamos que el titular tenga CURP.</p>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6 col-sm-6">
+                  <div class="form-group">
+                    <input type="text" [maxlength]=18 class="mt-1" formControlName="curp" class="form-control curp"
+                      placeholder="CURP" [ngClass]="{
+                        'is-invalid': s2Submitted && s2.curp.invalid,
+                        'is-valid': s2Submitted && !s2.curp.invalid
+                      }" required />
+                    <div *ngIf="
+                    s2Submitted &&
+                        s2.curp.errors?.required
+                      " class="help-block mt-1 text-danger">
+                      <i class="ft-alert-circle align-middle"></i> El CURP es requerido.
+                    </div>
+                    <div *ngIf="s2.curp.errors?.maxlength || s2.curp.errors?.minlength" class="text-danger">La
+                      CURP debe ser de 18 dígitos.
+                    </div>
+                    <div *ngIf="s2Submitted && s2.curp.errors?.pattern" class="text-danger">El formato de la
+                      CURP no es correcto.
+                    </div>
+                  </div>
+                  <div>
+                    <a class="btn btn-green btn-block mt-1" href="https://www.gob.mx/curp/" target="_blank">Saber cual
+                      es mi
+                      CURP</a>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mt-1">
+                  <p class=" fontResponsiveSliderNotes lh-13 text-left mt-1 mb-1">
+                    <mat-checkbox class="example-margin text-left" formControlName="chk" required [ngClass]="{
+                      'is-invalid': s2Submitted && s2.chk.invalid,
+                      'is-valid': s2Submitted && !s2.chk.invalid
+                    }">
+                      <p class="condiciones lh-13">
+                        Acepto que si la CURP que registro es incorrecta, no podré usar los beneficios cuando los necesite.
+                      </p>
+                      <div *ngIf="
+                      s2Submitted &&
+                        (s2.chk.invalid || s2.chk.errors?.required)
+                      " class="help-block mt-0 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> Campo
+                        requerido
+                      </div>
+                    </mat-checkbox>
+
+                  </p>
+                  <button (click)="changeStepCurpContinuar(stepper, 1)" class="btn btn-blue btn-block mt-2">
+                    Continuar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- Step Beneficios -->
+
+        <!-- End Step Beneficios -->
+
+        <mat-step label="" *ngFor="let itemB of arrBeneficios; let idexBeneficios = index;">
+          <form>
+            <div class="row d-flex-center">
+              <div class="col-lg-4 col-md-4 col-sm-12 text-center p-0 mt-2">
+                <!--<a *ngIf="itemB.beneficioid == 5" (click)="showResponsiveDialog()" class="float-right"><i class="far fa-question-circle"></i></a> -->
+                <div class="descripcion-beneficio"> {{itemB.descripcionbeneficio}} </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-12 text-center mt-1">
+                <div class="row justify-content-center" *ngIf="itemB.beneficiosbeneficiarios">
+                  <ng-container *ngFor="let item of itemB.beneficiosbeneficiarios; let i=index">
+                    <div class="col-3 col-sm-4 text-center ng-star-inserted"
+                      *ngIf="item.tipobeneficiarioid == 17 || item.tipobeneficiarioid == 18"
+                      [ngClass]="{
+                      'pointerEvents': (itemB.beneficioid > 2 && itemB.tipobeneficioid != 67 && itemB.beneficioid != 5) ||
+                    (itemB.beneficioid > 2 && !item.esseleccionado) && (itemB.beneficioid == 5 && !item.activo),
+                     'pointerEvents': (itemB.beneficioid == 4 || itemB.beneficioid == 5 || itemB.beneficioid == 16)  && !item.esseleccionado && !item.activo,
+                     'pointerEvents': (itemB.beneficioid > 2 && !item.esseleccionado && !item.activo) || edad >= 56,
+                    'grayscale': (itemB.beneficioid > 2 && !item.esseleccionado && !item.activo) || edad >= 56}"
+                      (click)="itemB.tipobeneficioid == 66 ? changeImg(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo) :
+                    changeImgAlaMedida(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo)">
+                      <!--a><img [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"
+                        (mouseover)="!item.esseleccionado ? item.imagendefault = item.imagenactivo : item.esseleccionado ?
+                        item.imagendefault = item.imageninactivo : ''"
+                        (mouseout)="!item.esseleccionado ? item.imagendefault = item.imageninactivo : item.imagendefault = item.imagenactivo"
+                        ></a> -->
+
+                      <a *ngIf="itemB.beneficioid != 5">
+                        <img [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"
+                          (mouseover)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                          item.imagendefault = item.imagenactivo : item.imagendefault = item.imageninactivo)"
+                          (mouseout)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                          item.imagendefault = item.imageninactivo : item.imagendefault = item.imagenactivo)">
+                      </a>
+
+                      <a *ngIf="itemB.beneficioid == 5"><img
+                          [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia">
+                      </a>
+
+
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="row justify-content-center" *ngIf="itemB.beneficiosbeneficiarios">
+                  <ng-container *ngFor="let item of itemB.beneficiosbeneficiarios; let i=index">
+                    <div class="col-3 col-sm-4 text-center ng-star-inserted"
+                      *ngIf="item.tipobeneficiarioid == 15 || item.tipobeneficiarioid == 16"
+                      [ngClass]="{
+                        'pointer-none': item.tipobeneficiarioid == 15 && (itemB.beneficioid == 1 || itemB.beneficioid == 2 || itemB.beneficioid == 3  || itemB.beneficioid == 4),
+                        'pointerEvents': (itemB.beneficioid > 2 && itemB.tipobeneficioid != 67 && itemB.beneficioid != 5) ||
+                    (item.tipobeneficiarioid == 15 && (itemB.beneficioid == 1 || itemB.beneficioid == 2)) ||
+                    (itemB.beneficioid > 2 && !item.esseleccionado) && (itemB.beneficioid == 5 && !item.activo),
+                    'pointerEvents': (itemB.beneficioid == 4 || itemB.beneficioid == 5 || itemB.beneficioid == 16)  && !item.esseleccionado && !item.activo,
+                    'grayscale': (itemB.beneficioid > 2 && !item.esseleccionado && !item.activo)}" (click)="
+                    itemB.beneficioid == 5 ? changeImg(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo) :
+                    itemB.tipobeneficioid == 67 ? changeImgAlaMedida(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo) :
+                    changeImg(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo)">
+                    <!-- <div class="col-3 col-sm-4 text-center ng-star-inserted"
+                    *ngIf="item.tipobeneficiarioid == 15 || item.tipobeneficiarioid == 16"
+                    [ngClass]="{
+                      'pointer-none': item.tipobeneficiarioid == 15 && (itemB.beneficioid != 5 || itemB.beneficioid != 16 || itemB.beneficioid !=4 || itemB.beneficioid !=5),
+                      'pointerEvents': (itemB.beneficioid > 2 && itemB.tipobeneficioid != 67 && itemB.beneficioid != 5) ||
+                  (item.tipobeneficiarioid == 15 && (itemB.beneficioid == 1 || itemB.beneficioid == 2)) ||
+                  (itemB.beneficioid > 2 && !item.esseleccionado) && (itemB.beneficioid == 5 && !item.activo),
+                  'pointerEvents': (itemB.beneficioid == 4 || itemB.beneficioid == 5 || itemB.beneficioid == 16)  && !item.esseleccionado && !item.activo,
+                  'grayscale': (itemB.beneficioid > 2 && !item.esseleccionado && !item.activo)}" (click)="
+                  itemB.beneficioid == 5 ? changeImg(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo) :
+                  itemB.tipobeneficioid == 67 ? changeImgAlaMedida(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo) :
+                  changeImg(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo)"> -->
+
+                      <a *ngIf="itemB.beneficioid != 5">
+                        <img [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"
+                          (mouseover)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                        item.imagendefault = item.imagenactivo : item.imagendefault = item.imageninactivo)" (mouseout)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                        item.imagendefault = item.imageninactivo : item.imagendefault = item.imagenactivo)">
+                      </a>
+
+                      <!--a *ngIf= "itemB.beneficioid == 5"><img [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"
+                        (mouseover)="(!item.esseleccionado ? item.imagendefault = item.imagenactivo : item.imagendefault = item.imageninactivo)"
+                        (mouseout)="(!item.esseleccionado ? item.imagendefault = item.imageninactivo : item.imagendefault = item.imagenactivo)"
+                        >
+                      </a> -->
+
+                      <a *ngIf="itemB.beneficioid == 5"><img
+                          [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia">
+                      </a>
+
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="row justify-content-center" *ngIf="itemB.beneficiosbeneficiarios">
+                  <ng-container *ngFor="let item of itemB.beneficiosbeneficiarios; let i=index; trackBy: trackByFn;">
+                    <div class="col-3 col-sm-3 col-md-3 col-lg-3 text-center"
+                      *ngIf="item.tipobeneficiarioid == 19 && countHijo == 3" [ngClass]="{'pointerEvents': (itemB.beneficioid > 2 && itemB.tipobeneficioid != 67 && itemB.beneficioid != 5) ||
+                    (itemB.beneficioid > 2 && !item.esseleccionado) && (itemB.beneficioid == 5 && !item.activo),
+                    'pointerEvents': (itemB.beneficioid == 4 || itemB.beneficioid == 5 || itemB.beneficioid == 16)  && !item.esseleccionado && !item.activo,
+                    'grayscale': (itemB.beneficioid > 2 && !item.esseleccionado && !item.activo)}"
+                      (click)="checkOrdenHijos(idexBeneficios, i, itemB.beneficioid, item.tipobeneficiarioid, item.imagenactivo, itemB.tipobeneficioid)">
+                      <a *ngIf="itemB.beneficioid != 5"><img
+                          [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"
+                          (mouseover)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                          item.imagendefault = item.imagenactivo : item.imagendefault = item.imageninactivo)"
+                          (mouseout)="item.tipobeneficiarioid != 15 && (!item.esseleccionado ?
+                          item.imagendefault = item.imageninactivo : item.imagendefault = item.imagenactivo)">
+                      </a>
+                      <a *ngIf="itemB.beneficioid == 5"><img
+                          [src]="'../../../../assets/img/icons/' + item.imagendefault + '.svg'" class="img-familia"></a>
+
+                    </div>
+                  </ng-container>
+                  <div class="col-3 col-sm-3 col-md-3 col-lg-3 text-center"
+                    *ngIf="countHijo > 3 && itemB.beneficioid != 3">
+                    <a><img src="../../../../assets/img/icons/Hijo.svg" class="img-familia"></a>
+                  </div>
+                  <div class="col-8 col-sm-8 col-md-8 col-lg-8 text-center vCenter"
+                    *ngIf="countHijo > 3 && itemB.beneficioid != 3">
+
+                    <div class="form-check-inline">
+                      <button class="btn btn-blue p-1" (click)="minus(itemB.beneficioid)"
+                        *ngIf="itemB.beneficioid < 3"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-blue p-1" (click)="plus(itemB.beneficioid)"
+                        *ngIf="itemB.beneficioid < 3"><i class="fa fa-plus"></i></button>
+                    </div>
+                    <input type="text" class="form-control ml-1 mr-1 text-center" [(ngModel)]="countHijo"
+                      [ngModelOptions]="{standalone: true}">
+                  </div>
+                </div>
+                <p *ngIf="countHijo > 3">Has seleccionado {{countHijo}} hijos.</p>
+                <div class="row mt-1" *ngIf="itemB.beneficioid < 3">
+                  <div class="col-12">
+                    <button class="btn btn-blue btn-block"
+                      (click)="countHijo < 4 ? agregarHijos(itemB.beneficioid) : ''" *ngIf="countHijo < 4">Agregar mas
+                      hijos</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-12 text-center">
+                <div class="card cardBeneficios mb-1 border">
+                  <div class="card-body" *ngIf="itemB.tipobeneficioid < 67">
+                    <p class="pago-mensual lh-10 mb-0 mt-1">Cuánto pagarías cada mes</p>
+                    <h1 class="mb-1"><b>${{precioMensual}}.00 USD</b></h1>
+                  </div>
+                  <div class="card-body" *ngIf="itemB.tipobeneficioid > 66">
+                    <p class="pago-mensual lh-13 m-1">Cuánto pagarías cada mes por este beneficio</p>
+                    <h1 class="mb-0"><b>${{precioMensualAlaMedida}}.00 USD</b></h1>
+                  </div>
+                </div>
+                <div *ngIf="itemB.tipobeneficioid > 66">
+                  <p class="pago-mensual lh-13 mb-0">Adicionales al costo de tu Plan Base</p>
+                  <p class="pago-mensual lh-13">de<b> ${{precioMensual}}.00 USD</b> al mes</p>
+                </div>
+                <button (click)="changeStep(stepper, itemB.beneficioid)" class="btn btn-pink btn-block mt-1"
+                  *ngIf="itemB.beneficioid == 5 && envioDineroSelected">
+                  Continuar
+                </button>
+                <button (click)="changeStep(stepper, itemB.beneficioid)" class="btn btn-pink btn-block mt-1"
+                  *ngIf="itemB.beneficioid != 5">
+                  Continuar
+                </button>
+                <button (click)="changeStep(stepper, itemB.beneficioid)" class="btn btn-purple btn-block mt-1"
+                  *ngIf="itemB.tipobeneficioid > 66 && precioMensualAlaMedida == 0">
+                  No, gracias
+                </button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+
+      </mat-stepper>
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#e31c79" type="square-jelly-box" [fullScreen]="true">
+</ngx-spinner>
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#e31c79" [fullScreen] = "true"
+template="<img src='https://media.giphy.com/media/o8igknyuKs6aY/giphy.gif' />"></ngx-spinner> -->
+<p-dialog header="Header" [(visible)]="displayModalResponsive" [modal]="true" [breakpoints]="{'960px': '75vw'}"
+  [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" header="">
+  <div class="text-center">
+
+    <h1 class="text-white">¿Quién recibe?</h1>
+    <hr class="separador">
+    <p class="text-white">A esa persona le regalamos una cuenta digital</p>
+    <p class="text-white">con la terjeta de débito para que reciba sus envíos.</p>
+    <p class="text-white">Debe ser mayor de 18 años</p>
+  </div>
+</p-dialog>
+<!--Login Page Ends-->
+
+<p-dialog header="Header" [(visible)]="displayModalResponsivePropuesta" [modal]="true"
+  [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" header=""
+  (onHide)="redirect()">
+  <div class="text-center">
+    <h1 class="text-white">¡Atención!</h1>
+    <hr class="separador" />
+    <p class="text-white">Ya cuenta con un plan activo, </p>
+    <p class="text-white">
+      ingrese con su usuario y contraseña.
+    </p>
+  </div>
+</p-dialog>
+
+<p-dialog header="Header" [(visible)]="displayModalPdf" [modal]="true" [transitionOptions]="'0ms'"
+  [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw'}" [draggable]="false" [resizable]="false" header="">
+  <div class="col-12 vCenter">
+    <pdf-viewer [src]="stringSource"
+    [render-text]="true"
+    [original-size]="true"
+    [fit-to-page]="true"
+    [autoresize]="true"
+    style="width: 800px; height: 600px">
+    </pdf-viewer>
+
+  </div>
+</p-dialog>
