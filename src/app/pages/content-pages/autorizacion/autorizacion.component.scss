@@ -1,0 +1,138 @@
+
+
+p {
+  margin: 0px !important;
+  white-space: pre-line;
+}
+
+h2 {
+  line-height: 20px;
+}
+
+.pointerEvents {
+  pointer-events: none;
+  cursor: none;
+}
+
+.separador {
+  border: 0;
+  height: 4px;
+  background: linear-gradient(to right, #E31C79 0%, #E31C79 20%, #3ccce1 20%, #3ccce1 40%, #f7a11f 40%, #f7a11f 60%, #6ab336 60%, #6ab336 100%)
+  }
+
+  .fontResponsive {
+    font-size: calc(0.7em + 0.3vw);
+  }
+
+  .img-thumbnail {
+
+  border: 0 important;
+  }
+
+  .img-header {
+    max-width: 120px;
+    max-height: 63px;
+    border: 0px solid #333;
+
+  }
+
+  .img-header2col {
+    width: 120px;
+    float: center;
+    margin: 0 0 0 3.05em;
+    border: 0px solid #333;
+
+  }
+
+  .img-header-tranquilidad {
+
+
+    height: 3.5rem;
+    margin: .5rem 0 0 17.5rem;
+    border: 0px solid #333;
+  float: left;
+
+
+  }
+
+    .curp {
+
+     text-transform: uppercase;
+     line-height: 2em;
+
+
+      }
+
+  .fontResponsiveFamilia {
+    font-size: calc(0.75em + 0.2vw);
+  }
+
+  .fontResponsiveSlider {
+    font-size: calc(0.75em + 0.35vmin);
+  }
+
+  .fontResponsiveSliderNotes {
+    font-size: calc(0.5em + 0.7vmin);
+  }
+
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #E31C79 !important;
+  }
+
+  .mat-horizontal-stepper-header::before, .mat-horizontal-stepper-header::after, .mat-stepper-horizontal-line {
+    border: 0;
+    height: 4px;
+    background: linear-gradient(to right, #E31C79 0%, #E31C79 25%, #3ccce1 25%, #3ccce1 50%, #f7a11f 50%, #f7a11f 75%, #6ab336 75%, #6ab336 100%);
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+
+  .mat-slide-toggle {
+    padding: 0rem 1rem;
+  }
+
+  .img-50 {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .img-hover:hover {
+    border: 2px solid #E31C79 !important;
+  }
+
+  .lh-13 {
+    line-height: 13px;
+  }
+
+  .col-familia .mat-slide-toggle-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+
+  .col-familia .mat-slide-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .cardBeneficios {
+    margin: 5px 0;
+  }
+
+  @media screen and (max-width: 800px) {
+    .img-header-tranquilidad {
+      visibility: hidden;
+      clear: both;
+      float: left;
+      margin: 10px auto 5px 20px;
+      width: 28%;
+      display: none;
+      border: 1px solid #333;
+
+    }
+
+
+  }

@@ -1,0 +1,761 @@
+<!--Page Starts-->
+<div class="container-fluid" ngStyle.xl="display:block" ngStyle.lg="display:block" ngStyle.md="display:block" ngStyle.sm="display:block"
+  ngStyle.xs="display:none">
+  <!-- Empieza header-->
+  <div class="row bg-white p-2">
+    <div class="col-2 float-left" ngClass.sm="text-center" ngClass.xs="col-12 text-center">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header" />
+    </div>
+    <div class="col-10 text-left" style="padding-left: 16%">
+      <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg"
+        class="w-50 mt-2 tranquilidad-a-tu-alcance" />
+    </div>
+  </div>
+  <!-- Termina header-->
+</div>
+<hr class="separador mt-0 mb-0" ngStyle.xl="display:block" ngStyle.xl="display:block" ngStyle.lg="display:block" ngStyle.md="display:block" ngStyle.sm="display:block" ngStyle.xs="display:none"/>
+
+
+<div class="container-fluid">
+  <div class="row bg-white align-items-center" *ngIf="index == 1">
+    <div class="col-12 text-center p-0 mt-3">
+      <h2>Datos personales</h2>
+      <h3 class="m-0 fontResponsive">
+        Para continuar debes llenar todos los campos.
+      </h3>
+    </div>
+    <div class="col-12 p-0">
+      <hr class="separador mt-3 mb-0" />
+    </div>
+  </div>
+  <div class="row bg-white align-items-center" *ngIf="index == 2">
+    <div class="col-12 text-center p-0 mt-2">
+      <i class="fas fa-arrow-left fa-2x float-left ml-2 cursor-pointer" matStepperPrevious
+        (click)="backStep(stepper)"></i>
+      <h2>Confirma tus datos</h2>
+
+      <h3 class="m-0 fontResponsive">
+        Por favor confirma que todos los datos son correctos.
+      </h3>
+    </div>
+    <div class="col-12 p-0">
+      <hr class="separador mt-4 mb-0" />
+    </div>
+  </div>
+  <div class="row bg-white align-items-center" *ngIf="index == 3">
+    <div class="col-12 text-center p-0 mt-2">
+      <i class="fas fa-arrow-left fa-2x float-left ml-2 cursor-pointer" matStepperPrevious
+        (click)="backStep(stepper)"></i>
+      <h2>Confirma tu plan</h2>
+    </div>
+    <div class="col-12 p-0">
+      <hr class="separador mt-4 mb-0" />
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-3 p-0">
+  <div class="row m-0">
+    <div class="col-12 p-0">
+      <div class="container-fluid" [ngClass]="{ 'container-fluid': index == 3 }">
+        <mat-stepper [linear]="true" class="stepper-datos-formulario" #stepper>
+          <mat-step label="">
+            <div class="row d-flex-center mt-2">
+              <div class="col-md-6 col-lg-4 col-sm-12" *ngFor="let item of arrBeneficiarios">
+                <div class="card cardBeneficios p-1">
+                  <div class="card-body">
+                    <div class="row vCenter">
+                      <div class="col-3 col-sm-4 col-md-3 text-center vCenter">
+                        <span class="tipobeneficiario-captura">{{ item.tipoBeneficiario }}</span>
+                        <p class="text-white font-small-1">{{ item.beneficiarioId }}</p>
+                      </div>
+                      <div class="col-5 text-center" *ngIf="item.completo">
+                        <!--button class="boton-listo">¡Listo!</button-->
+                        <button class="btn btn-outline-success btn-listo">
+                          Listo
+                        </button>
+                      </div>
+                      <div class="col-5 text-center" *ngIf="!item.completo">
+                        <!--button class="boton-incompleto">Incompleto</button-->
+                        <button class="btn btn-outline-danger btn-incompleto">
+                          Incompleto
+                        </button>
+                      </div>
+                      <div class="col-4 col-sm-3 col-md-4 text-center">
+                        <button class="boton-editar" (click)="openModal(modalTitular, item)"
+                          *ngIf="item.tipoBeneficiarioId == 15">
+                          Editar
+                        </button>
+                        <button class="boton-editar" (click)="openModal(modalPareja, item)"
+                          *ngIf="item.tipoBeneficiarioId == 16">
+                          Editar
+                        </button>
+                        <button class="boton-editar" (click)="openModal(modalFamilia, item)"
+                          *ngIf="item.tipoBeneficiarioId > 16">
+                          Editar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row mt-2"> -->
+            <div class="row mt-2" *ngIf="this.formlarioCompleto">
+              <div class="col-12 text-center">
+                <button class="btn btn-blue mb-1" (click)="changeStep(stepper)">
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </mat-step>
+          <!-- Step Conormación datos -->
+          <mat-step label="">
+            <div class="row mt-2">
+              <div class="col-md-6 col-lg-4 col-sm-12 mb-2" *ngFor="let item of arrBeneficiarios">
+                <div *ngIf="item.tipoBeneficiarioId == 15" class="datos-detalle-confirmar">
+                  <div class="row">
+                    <div class="col-12">
+                      <h3 class="mb-1">
+                        <b>{{ item.tipoBeneficiario }}</b>
+                      </h3>
+                    </div>
+                  </div>
+                  <p>
+                    <b>Nombre:</b> {{ item.nombre }} {{ item.apellidoPaterno }}
+                    {{ item.apellidoMaterno }}
+                  </p>
+                  <p><b>Teléfono:</b> {{ item.telefono }}</p>
+                  <p><b>E-mail:</b> {{ item.correo }}</p>
+                  <p>
+                    <b>Fecha de nacimiento:</b>
+                    {{ item.fechaNacimiento | date: 'dd-MMM-yyyy' }}
+                  </p>
+                  <p><b>Sexo:</b> {{ item.sexo }}</p>
+                  <p><b>País de origen:</b> {{ item.paisOrigen }}</p>
+                  <p><b>Estado de origen:</b> {{ item.estadoOrigen }}</p>
+                  <p><b>País de residencia:</b> {{ item.paisTrabajo }}</p>
+                  <p><b>Estado/Provincia:</b> {{ item.estadoTrabajo }}</p>
+                </div>
+                <div *ngIf="item.tipoBeneficiarioId == 16" class="datos-detalle-confirmar">
+                  <h3 class="mb-1">
+                    <b>{{ item.tipoBeneficiario }}</b>
+                  </h3>
+                  <p>
+                    <b>Nombre:</b> {{ item.nombre }} {{ item.apellidoPaterno }}
+                    {{ item.apellidoMaterno }}
+                  </p>
+                  <p><b>Teléfono:</b> {{ item.telefono }}</p>
+                  <p><b>Email:</b> {{ item.correo }}</p>
+                  <p>
+                    <b>Fecha de nacimiento:</b>
+                    {{ item.fechaNacimiento | date: 'dd-MMM-yyyy' }}
+                  </p>
+                  <p><b>Sexo:</b> {{ item.sexo }}</p>
+                  <p *ngIf="cmbEstadoPareja != 33">
+                    <b>País de residencia:</b> {{ item.paisOrigen }}
+                  </p>
+                  <p *ngIf="cmbEstadoPareja != 33">
+                    <b>Estado:</b> {{ item.estadoOrigen }}
+                  </p>
+                </div>
+                <div *ngIf="item.tipoBeneficiarioId > 16" class="datos-detalle-confirmar">
+                  <h3 class="mb-1">
+                    <b>{{ item.tipoBeneficiario }}</b>
+                  </h3>
+                  <p>
+                    <b>Nombre:</b> {{ item.nombre }} {{ item.apellidoPaterno }}
+                    {{ item.apellidoMaterno }}
+                  </p>
+                  <p><b>Teléfono:</b> {{ item.telefono }}</p>
+                  <p><b>Email:</b> {{ item.correo }}</p>
+                  <p>
+                    <b>Fecha de nacimiento:</b>
+                    {{ item.fechaNacimiento | date: 'dd-MMM-yyyy' }}
+                  </p>
+                  <p><b>Sexo:</b> {{ item.sexo }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-12 text-center">
+                <button class="btn btn-pink mb-1" (click)="backStep(stepper)">
+                  Corregir
+                </button>
+                <button class="btn btn-blue mb-1 ml-1" (click)="changeStep(stepper)">
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </mat-step>
+          <!-- Fin Step Conormación datos -->
+          <!-- Step Conormación plan -->
+          <mat-step label="">
+            <div class="row d-flex-center mt-2 p-1">
+              <div class="col-md-6 col-lg-6 col-sm-12 col-12 mb-2" ngClass.sm="mb-4">
+                <img src="../../../assets/img/icons/simple.svg" class="img-propuesta" />
+                <span><b> Beneficios Base</b></span>
+                <!-- <p *ngFor="let item of arrBeneficios" class="fontResponsive"> {{item}}</p> -->
+                <div class="row mt-2 vCenter text-center rowTable">
+                  <div class="col-2 center-flex"></div>
+                  <div class="col-2 center-flex">
+                    <img src="../../../assets/img/icons/repatriacion.svg" class="img-propuesta-ico-table ml-2" />
+                  </div>
+                  <div class="col-2 center-flex">
+                    <img src="../../../assets/img/icons/servicios-funerarios.svg"
+                      class="img-propuesta-ico-table ml-2" />
+                  </div>
+                  <div class="col-2 center-flex">
+                    <img src="../../../assets/img/icons/seguro-vida.svg" class="img-propuesta-ico-table ml-2" />
+                  </div>
+                  <div class="col-2 center-flex">
+                    <img src="../../../assets/img/icons/educacion-financiera.svg"
+                      class="img-propuesta-ico-table ml-2" />
+                  </div>
+                  <div class="col-2 center-flex">
+                    <img src="../../../assets/img/icons/cuenta-digital.svg" class="img-propuesta-ico-table ml-2 mb-1" />
+                  </div>
+                </div>
+                <div class="row vCenter mt-1 text-center bb-1">
+                  <div class="col-2 center-flex"></div>
+                  <div class="col-2 center-flex">
+                    <p class="fontResponsiveTableText">
+                      Repatriación<br />a México
+                    </p>
+                  </div>
+                  <div class="col-2 center-flex">
+                    <p class="fontResponsiveTableText">
+                      Servicio<br />Funerario
+                    </p>
+                  </div>
+                  <div class="col-2 center-flex">
+                    <p class="fontResponsiveTableText">Seguro<br />de Vida</p>
+                  </div>
+                  <div class="col-2 center-flex">
+                    <p class="fontResponsiveTableText">
+                      Educación<br />Financiera
+                    </p>
+                  </div>
+                  <div class="col-2 center-flex">
+                    <p class="fontResponsiveTableText">Cuenta<br />Digital</p>
+                  </div>
+                </div>
+                <div clas="clear15">&nbsp;</div>
+                <div class="row mt-2 vCenter text-center" *ngFor="let itemB of arrResumen; let i = index">
+                  <div class="col-2">
+                    <div class="tipobeneficiario">
+                      {{ itemB.tipobeneficiario }}
+                    </div>
+                  </div>
+                  <ng-container *ngFor="let item of itemB.beneficioSimpleDTO">
+                    <div class="col-2 center-flex" *ngIf="item.beneficioId == 1">
+                      <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                    </div>
+                    <div class="col-2 center-flex" *ngIf="item.beneficioId == 2">
+                      <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                    </div>
+                    <div class="col-2 center-flex" *ngIf="item.beneficioId == 3">
+                      <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                      <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta" *ngIf="!item.activo" />
+                      <!-- <p *ngIf="!item.activo" class="fs-10">-</p> -->
+                    </div>
+                    <div class="col-2 center-flex" *ngIf="item.beneficioId == 4">
+                      <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                    </div>
+                    <div class="col-2 center-flex" *ngIf="item.beneficioId == 5">
+                      <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="row m-2" *ngIf="edad < 51 && mostrarMsj">
+                  <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mr-2" />
+                  <span><small class="fontResponsiveSliderNotes">"De acuerdo con sus respuestas en el formulario de
+                      eligibilidad este beneficio no está disponible."</small></span>
+                </div>
+                <!-- Beneficios a la medida -->
+                <ng-container *ngIf="arrResumenAlaMedida.length > 0">
+                  <div class="mt-4 row">
+                    <div class="col-12 text-center">
+                      <img src="../../../assets/img/icons/alamedida.svg" class="img-propuesta" />
+                      <span><b> Beneficios a la Medida</b></span>
+                    </div>
+                  </div>
+                  <div class="row mt-2 vCenter text-center rowTable">
+                    <div class="col-2"></div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/llamadas-ilimitadas.svg"
+                        class="img-propuesta-ico-table ml-2" />
+                    </div>
+                  </div>
+                  <div class="row vCenter mt-1 text-center bb-1">
+                    <div class="col-2"></div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">
+                        Llamadas <br />Ilimitadas
+                      </p>
+                    </div>
+                  </div>
+                  <div clas="clear15">&nbsp;</div>
+                  <div class="row mt-2 vCenter text-center" *ngFor="let itemB of arrResumenAlaMedida; let i = index">
+                    <div class="col-2">
+                      <div class="tipobeneficiario">
+                        {{ itemB.tipobeneficiario }}
+                      </div>
+                    </div>
+                    <ng-container *ngFor="let item of itemB.beneficioSimpleDTO">
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 16">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo" />
+                      </div>
+                    </ng-container>
+                  </div>
+                </ng-container>
+                <!-- Fin Beneficios a la medida -->
+              </div>
+              <div class="col-md-5 col-lg-5 col-sm-12 col-12 mb-2 offset-md-1 offset-lg-1 text-left">
+                <!-- <h4 class="mb-1"><b>Plan de previsión</b></h4> -->
+                <p class="mb-1"><b>Tipo de Plan: </b> {{ descripcionPlan }}</p>
+                <p class="mb-1">
+                  <b>Cada cuándo vas a pagar: </b> {{ frecuencaPago }}
+                </p>
+                <p *ngIf="frecuencaPago != 'Anual'">
+                  <b>Cuánto pagarás cada mes: </b>${{ precioMensual + precioMensualAlaMedida }} {{currency}}
+                </p>
+                <p class="mb-1" *ngIf="arrResumenAlaMedida.length == 0 && frecuencaPago != 'Anual'">
+                  Tu primer pago será de <b>${{ precioMensual + precioGastoAdmon }} {{currency}}</b> porque incluye <b>${{precioGastoAdmon}} {{currency}}</b> de gastos administrativos.
+                </p>
+                <p class="mb-1" *ngIf="arrResumenAlaMedida.length == 0 && frecuencaPago == 'Anual'">
+                  Tu primer pago será de<b>${{ precioAnual + precioGastoAdmon }} {{currency}}</b> porque incluye <b>${{precioGastoAdmon}} {{currency}}</b> de gastos administrativos.
+                </p>
+                <p class="mb-1" *ngIf="arrResumenAlaMedida.length > 0">
+                  Tu primer pago será de <b>${{ precioMensual + precioMensualAlaMedida + precioGastoAdmon}} {{currency}}</b> porque incluye <b>${{precioGastoAdmon}} {{currency}}</b> de gastos administrativos.
+                </p>
+                <!-- <p>
+                  <span class="font-small-1"> Plan: ${{ precioMensual + precioMensualAlaMedida }} {{currency}}</span>
+                </p>
+                <p>
+                  <span class="font-small-1"> Gastos administrativos (pago único): ${{precioGastoAdmon}} {{currency}} </span>
+                </p> -->
+
+                <!-- <div class="clear15"></div>
+                <p>
+                  <b>Por favor confirma el diseño de tu plan y selecciona la
+                    forma de pago.</b>
+                </p> -->
+
+                <div class="row mt-2">
+                  <div class="col-12 text-center">
+                    <button class="btn btn-blue mb-1" (click)="contuniarAutorizacion()">
+                      Continuar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row mt-2">
+              <div [ngClass]="{
+                  'col-lg-12 col-md-12 col-sm-12 col-12 text-center':
+                    arrResumenAlaMedida.length > 0,
+                  'col-lg-6 col-md-6 col-sm-6 col-6 text-right':
+                    arrResumenAlaMedida.length == 0
+                }">
+                <mat-slide-toggle #chkMenor name="mayor56" class="btn boton-pago-tarjeta mt-1 pointerEvents"
+                  [checked]="true">
+                  <p class="texto-boton-pago lh-13">Pago tarjeta</p>
+                </mat-slide-toggle>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-6 text-left mb-2" *ngIf="arrResumenAlaMedida.length == 0">
+                <mat-slide-toggle #chkMayor name="menor56" class="btn boton-pago-efectivo mt-1 pointerEvents"
+                  [checked]="false">
+                  <p class="texto-boton-pago lh-13">Pago efectivo</p>
+                </mat-slide-toggle>
+              </div>
+            </div> -->
+            <!-- <div class="row mt-2">
+              <div class="col-12 text-center">
+                <button class="btn btn-blue mb-1" [routerLink]="['/pages/autorizacion']">
+                  Continuar
+                </button>
+              </div>
+            </div> -->
+          </mat-step>
+          <!-- Fin Step Conormación plan -->
+        </mat-stepper>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Datos Titular -->
+<ng-template #modalTitular let-c="close" let-d="dismiss">
+  <div class="modal-header bg-gray">
+    <h2 class="modal-title text-dark">{{ miembroFamilia }}</h2>
+    <button type="button" class="close text-dark" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-gray">
+    <form [formGroup]="frm">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control input-form-datos" formControlName="nombre" placeholder="Nombre" (keypress)="onlyLetters($event)"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+        <input type="text" class="form-control input-form-datos" formControlName="apaterno" (keypress)="onlyLetters($event)"
+          placeholder="Apellido paterno" [ngClass]="{ 'is-invalid': submitted && f.apaterno.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+      <input type="text" class="form-control input-form-datos" formControlName="amaterno" (keypress)="onlyLetters($event)"
+          placeholder="Apellido materno" [ngClass]="{ 'is-invalid': submitted && f.amaterno.errors }" />
+        </div>
+      </div>
+
+      <div class="form-row mt-1">
+        <div class="col">
+          <input class="form-control input-form-datos" #drp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [bsConfig]="{
+              isAnimated: true,
+              adaptivePosition: false,
+              showWeekNumbers: false
+            }" placement="bottom" formControlName="fnacimiento" placeholder="Fecha de nacimiento"
+            [ngClass]="{ 'is-invalid': submitted && f.fnacimiento.errors }" disabled/>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="sexo" placeholder="Sexo"
+            [ngClass]="{ 'is-invalid': submitted && f.sexo.value == '0' }" disabled>
+            <option value="0" disabled>Sexo</option>
+            <option value="{{ item.sexoid }}" *ngFor="let item of sexos">
+              {{ item.sexo }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="estado" placeholder="País"
+            [ngClass]="{ 'is-invalid': submitted && f.estado.value == '0' }">
+            <option value="0" disabled>Estado de origen de México</option>
+            <option value="{{ item.estadoid }}" *ngFor="let item of estados">
+              {{ item.nombreestado }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="pais" placeholder="País"
+            [ngClass]="{ 'is-invalid': submitted && f.pais.value == '0' }" (change)="getEstadosEU($event.target.value)">
+            <option value="0" disabled>País donde vives/trabajas</option>
+            <option value="{{ item.paisid }}" *ngFor="let item of paises">
+              {{ item.descripcionpais }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="estadoEU" placeholder="Estado"
+            [ngClass]="{ 'is-invalid': submitted && f.estadoEU.value == '0' }">
+            <option value="0" disabled>Estado donde vives/trabajas</option>
+            <option value="{{ item.estadoid }}" *ngFor="let item of estadosEU">
+              {{ item.nombreestado }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+        <input type="email" class="form-control input-form-datos" formControlName="correo" placeholder="Email"
+          [ngClass]="{ 'is-invalid': submitted && f.correo.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <div class="input-group">
+            <!-- <select #cmbLadaTitulo class="form-control input-form-datos mb-1" formControlName="lada" placeholder="Lada"
+              [ngClass]="{ 'is-invalid': submitted && f.lada.value == '0' }">
+              <option value="0" disabled>Lada</option>
+              <option value="40">🇨🇦 <span class="spanLada">+1</span></option>
+              <option value="70">🇺🇸 +1</option>
+              <option value="142">🇲🇽 +52</option>
+            </select> -->
+            <!-- <p-dropdown #cmbLadaTitulo [options]="countries" [(ngModel)]="selectedCountry" optionLabel="name" optionValue="value" [showClear]="true"
+              placeholder="Select a Country" formControlName="lada" placeholder="Lada">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedCountry">
+                  <img src="../../../../assets/img/flags/ca.svg"/>
+                  <div>{{ selectedCountry.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-country pTemplate="item">
+                <div class="country-item">
+                  <img src="../../../../assets/img/flags/ca.svg"/>
+                  <div>{{ country.name }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown> -->
+            <p-dropdown #cmbLadaTitulo [options]="countries" optionLabel="name"
+            formControlName="lada" placeholder="Lada"  (onChange)="onChangeLadaTitular($event)"
+            [ngClass]="{ 'is-invalid': submitted && !selectedCountry }">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value border" *ngIf="selectedCountry">
+                  <div>
+                    <img [src]="selectedCountry.imgSrc" width="20" style="text-align: left !important;" />
+                    {{ selectedCountry.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-country pTemplate="item">
+                <div>
+                  <div>
+                    <img [src]="country.imgSrc" width="20" style="text-align: left !important;"/>
+                    {{country.name}}
+                  </div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          <input type="text" class="form-control input-form-datos" [maxlength]="10" formControlName="telefono" (keypress)="onlyNumbers($event)"
+            placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row vCenter" *ngIf="selectedCountry.value != 142">
+        <span class="text-danger">No aplica para llamadas ilimitadas</span>
+      </div>
+      <div class="row mt-1">
+        <div class="col-12 text-center">
+          <button class="btn btn-pink btn-block" (click)="addUserTitular()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<!-- Fin Modal Datos Titular -->
+
+<!-- Modal Datos Pareja -->
+<ng-template #modalPareja let-c="close" let-d="dismiss">
+  <div class="modal-header bg-gray">
+    <h2 class="modal-title text-dark">{{ miembroFamilia }}</h2>
+    <button type="button" class="close text-dark" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-gray">
+    <form [formGroup]="frmP">
+      <div class="form-row">
+        <div class="col">
+  <input type="text" class="form-control input-form-datos" formControlName="nombreP" placeholder="Nombre" (keypress)="onlyLetters($event)"
+          [ngClass]="{ 'is-invalid': submittedP && fP.nombreP.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+     <input type="text" class="form-control input-form-datos" formControlName="apaternoP" (keypress)="onlyLetters($event)"
+          placeholder="Apellido paterno" [ngClass]="{ 'is-invalid': submittedP && fP.apaternoP.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+  <input type="text" class="form-control input-form-datos" formControlName="amaternoP" (keypress)="onlyLetters($event)"
+          placeholder="Apellido materno" [ngClass]="{ 'is-invalid': submittedP && fP.amaternoP.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <input class="form-control input-form-datos" #drp="bsDatepicker" bsDatepicker [maxDate]="maxDateParejaPadres"
+          [bsConfig]="{
+              isAnimated: true,
+              adaptivePosition: false,
+              showWeekNumbers: false
+            }" placement="bottom" formControlName="fnacimientoP" placeholder="Fecha de nacimiento"
+            [ngClass]="{ 'is-invalid': submittedP && fP.fnacimientoP.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="sexoP" placeholder="Sexo"
+            [ngClass]="{ 'is-invalid': submittedP && fP.sexoP.value == '0' }">
+            <option value="0" disabled>Sexo</option>
+            <option value="{{ item.sexoid }}" *ngFor="let item of sexos">
+              {{ item.sexo }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select cmbEstadoPareja class="form-control input-form-datos" formControlName="estadoP" placeholder="País"
+            [ngClass]="{ 'is-invalid': submittedP && fP.estadoP.value == '0' }">
+            <option value="0" disabled>Estado donde vives</option>
+            <option value="33">No aplica</option>
+            <option value="{{ item.estadoid }}" *ngFor="let item of estados">
+              {{ item.nombreestado }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+   <input type="email" class="form-control input-form-datos" formControlName="correoP" placeholder="Email"
+          [ngClass]="{ 'is-invalid': submittedP && fP.correoP.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <div class="input-group">
+            <!-- <select class="form-control input-form-datos mb-1" formControlName="ladaP" placeholder="Lada"
+              [ngClass]="{ 'is-invalid': submittedP && fP.ladaP.value == '0' }">
+              <option value="0" disabled>Lada</option>
+              <option value="40">🇨🇦 +1</option>
+              <option value="70">🇺🇸 +1</option>
+              <option value="142">🇲🇽 +52</option>
+            </select> -->
+            <p-dropdown [options]="countries" optionLabel="name"
+            formControlName="ladaP" placeholder="Lada"  (onChange)="onChangeLadaPareja($event)"
+            [ngClass]="{ 'is-invalid': submittedP && !selectedCountryPareja }">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedCountryPareja">
+                  <div>
+                    <img [src]="selectedCountryPareja.imgSrc" width="20"/>
+                    {{ selectedCountryPareja.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-country pTemplate="item">
+                <div>
+                  <div>
+                    <img [src]="country.imgSrc" width="20"/>
+                    {{country.name}}
+                  </div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+  <input type="text" class="form-control input-form-datos" [maxlength]="10" formControlName="telefonoP" (keypress)="onlyNumbers($event)"
+            placeholder="Teléfono" [ngClass]="{ 'is-invalid': submittedP && fP.telefonoP.errors }" />
+          </div>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-12 text-center">
+          <button class="btn btn-pink btn-block" (click)="addUserPareja()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<!-- Fin Modal Datos Pareja -->
+
+<!-- Modal Datos Familia -->
+<ng-template #modalFamilia let-c="close" let-d="dismiss">
+  <div class="modal-header bg-gray">
+    <h2 class="modal-title text-dark">{{ miembroFamilia }}</h2>
+    <button type="button" class="close text-dark" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-gray">
+    <form [formGroup]="frm2">
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control input-form-datos" formControlName="nombre2" placeholder="Nombre" (keypress)="onlyLetters($event)"
+          [ngClass]="{ 'is-invalid': submitted2 && f2.nombre2.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+<input type="text" class="form-control input-form-datos" formControlName="apaterno2" (keypress)="onlyLetters($event)"
+          placeholder="Apellido paterno" [ngClass]="{ 'is-invalid': submitted2 && f2.apaterno2.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+      <input type="text" class="form-control input-form-datos" formControlName="amaterno2" (keypress)="onlyLetters($event)"
+          placeholder="Apellido materno" [ngClass]="{ 'is-invalid': submitted2 && f2.amaterno2.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <input class="form-control input-form-datos" #drp="bsDatepicker" bsDatepicker [maxDate]="maxDateParejaPadres" [minDate]="minDateParejaPadres"
+          [bsConfig]="{
+              isAnimated: true,
+              adaptivePosition: true,
+              showWeekNumbers: false
+            }" placement="top" formControlName="fnacimiento2" placeholder="Fecha de nacimiento"
+            [ngClass]="{ 'is-invalid': submitted2 && f2.fnacimiento2.errors }" />
+
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <select class="form-control input-form-datos" formControlName="sexo2"
+            [ngClass]="{ 'is-invalid': submitted2 && f2.sexo2.value == '0' }">
+            <option value="0" disabled>Sexo</option>
+            <option value="{{ item.sexoid }}" *ngFor="let item of sexos">
+              {{ item.sexo }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+      <input type="email" class="form-control input-form-datos" formControlName="correo2" placeholder="Email"
+          [ngClass]="{ 'is-invalid': submitted2 && f2.correo2.errors }" />
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col">
+          <div class="input-group">
+            <!-- <select class="form-control input-form-datos mb-1" formControlName="lada2" placeholder="Lada"
+              [ngClass]="{ 'is-invalid': submitted2 && f2.lada2.value == '0' }">
+              <option value="0" disabled>Lada</option>
+              <option value="40">🇨🇦 +1</option>
+              <option value="70">🇺🇸 +1</option>
+              <option value="142">🇲🇽 +52</option>
+            </select> -->
+            <p-dropdown [options]="countries" optionLabel="name"
+            formControlName="lada2" placeholder="Lada"  (onChange)="onChangeLadaPaadresHijos($event)"
+            [ngClass]="{ 'is-invalid': submitted2 && !selectedCountryPadresHijos }">
+              <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedCountryPadresHijos">
+                  <div>
+                    <img [src]="selectedCountryPadresHijos.imgSrc" width="20"/>
+                    {{ selectedCountryPadresHijos.name }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-country pTemplate="item">
+                <div>
+                  <div>
+                    <img [src]="country.imgSrc" width="20"/>
+                    {{country.name}}
+                  </div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+    <input type="text" class="form-control input-form-datos" [maxlength]="10" formControlName="telefono2" (keypress)="onlyNumbers($event)"
+            placeholder="Teléfono" [ngClass]="{ 'is-invalid': submitted2 && f2.telefono2.errors }" />
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-12 text-center">
+          <button class="btn btn-pink btn-block" (click)="addUserPadres()">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#e31c79" type="square-jelly-box" [fullScreen]="true">
+</ngx-spinner>
+
+<!-- Fin Modal Datos Familia -->
+
+<!--Page Ends-->

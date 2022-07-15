@@ -1,0 +1,24 @@
+<!-- *NAVBAR* starts -->
+<app-navbar (seachTextEmpty)="checkNavbarSeachTextEmpty($event)"></app-navbar>
+<hr class="separador mt-0">
+<!-- *NAVBAR* ends -->
+
+<div [ngClass]="{'show-overlay': !isNavbarSeachTextEmpty}" (click)="onWrapperClick();" (window:resize)="onResize($event)">
+
+  <!-- *TOP* Menu starts -->
+  <app-horizontal-menu appTopMenu *ngIf="menuPosition === 'Top' && !displayOverlayMenu"></app-horizontal-menu>
+  <!-- *TOP* Menu ends -->
+  <div class="main-panel">
+    <div class="main-content ml-0">
+
+      <div class="content-wrapper hv-100">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <!-- FOOTER -->
+      <app-footer ngClass.sm="display-none" ngClass.xs="display-none"></app-footer>
+    <!-- Scroll to top button -->
+    <button class="btn btn-pink scroll-top" type="button" *ngIf="isScrollTopVisible" (click)="scrollToTop()"><i class="ft-arrow-up"></i></button>
+  </div>
+
+</div>

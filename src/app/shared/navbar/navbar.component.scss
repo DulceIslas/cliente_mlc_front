@@ -1,0 +1,41 @@
+.header-titular {
+  margin-left: 0px !important;
+  z-index: 2;
+}
+
+.navbar .navbar-brand-center .navbar-header .logo .logo-img {
+  width: 100px  !important;
+  max-height: 50px !important;
+}
+
+
+.navbar .navbar-brand-center .navbar-header {
+  width: 120px!important;
+  position: initial !important;
+  transform: initial !important;
+}
+
+.font-pink {
+  color: #dd0063 !important;
+}
+
+.menu-item {
+  font-size: 15px;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.d-md-flex {
+  display: flex !important;
+}
+
+@media screen and (max-width: 960px) {
+
+  .header-titular {
+    margin-left: 0px !important;
+    z-index: 3;
+  }
+}
+

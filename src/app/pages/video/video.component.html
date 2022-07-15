@@ -1,0 +1,50 @@
+<!--Video Page Starts-->
+
+<!-- Empieza header-->
+<div class="row bg-white p-2">
+  <div class="col-2 float-left" ngClass.sm="text-center" ngClass.xs="col-12 text-center" >
+    <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header">
+  </div>
+  <div class="col-10 text-left" style="padding-left:16%; ">
+    <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="w-50 mt-2 tranquilidad-a-tu-alcance" >
+  </div>
+</div>
+<!-- Termina header-->
+
+  <hr class="separador" />
+
+  <div class="clear10"></div>
+<div class="container">
+  <div class="row mt-3 d-flex justify-content-center video-row">
+    <div class="player-wrapper col-12">
+      <vg-player>
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+        <vg-controls [vgAutohide]="true" [vgAutohideTime]="1.5">
+          <vg-play-pause></vg-play-pause>
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video #media [vgMedia]="media" id="singleVideo" preload="auto"  class="bg-gray">
+          <source src="./assets/video/Animación app 2 HD.mp4" type="video/mp4">
+        </video>
+      </vg-player>
+      <a  class="btn btn-blue btn-lg mt-3" [routerLink] = "['/pages/beneficios-base']">Continuar</a>
+
+    </div>
+  </div>
+  <!-- <div class="row vCenter">
+    <div class="col-md-4 col-sm-6 mt-1">
+       <a  class="btn btn-blue btn-lg mt-3" [routerLink] = "['/pages/beneficios-base']">Continuar</a>
+    </div>
+  </div> -->
+</div>
+
+
+<!--Video Page Ends-->

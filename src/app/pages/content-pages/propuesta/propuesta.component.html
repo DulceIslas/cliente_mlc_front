@@ -1,0 +1,268 @@
+<!--Login Page Starts-->
+<div class="container-fluid header" style="padding-left: 0 !important; padding-right: 0 !important; margin-right: 0 !important;">
+   <!-- Empieza header-->
+   <div class="row  bg-white pb-0 pt-2" >
+    <div class="col-2 float-left mb-2" ngClass.sm="text-center" ngClass.xs="col-12 text-center">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header ">
+    </div>
+    <div class="col-10 text-left pt-1" style="padding-left:16%; " >
+      <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="w-50 mt-2 mb-2 tranquilidad-a-tu-alcance">
+    </div>
+
+  </div>
+  <!-- Termina header-->
+
+   <hr class="separador mt-0 mb-0" />
+</div>
+<div class="container-fluid bg-white">
+<div class="row pt-3">
+  <div class="col-12 text-center p-0">
+    <h2 class="mb-3">Así armaste tu plan</h2>
+  <hr class="separador mt-1 mb-0" />
+  </div>
+
+</div>
+</div>
+<div class="container-fluid mt-1 p-0">
+  <div class="row m-0">
+    <div class="col-12 p-0">
+
+            <div class="container">
+              <div class="row mb-3">
+                <div class="col-md-6 col-sm-12 col-12">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <img src="../../../assets/img/icons/simple.svg" class="img-propuesta">
+
+                      <span><b> Beneficios Base</b></span>
+
+                    </div>
+                  </div>
+                  <div class="row mt-2 vCenter text-center rowTable">
+                    <div class="col-2 center-flex"></div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/repatriacion.svg" class="img-propuesta-ico-table ml-2">
+                    </div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/servicios-funerarios.svg" class="img-propuesta-ico-table ml-2">
+                    </div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/seguro-vida.svg" class="img-propuesta-ico-table ml-2">
+                    </div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/educacion-financiera.svg" class="img-propuesta-ico-table ml-2 ">
+                    </div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/cuenta-digital.svg" class="img-propuesta-ico-table ml-2 mb-1">
+                    </div>
+                  </div>
+                  <div class="row vCenter mt-1 text-center bb-1">
+                    <div class="col-2 center-flex"></div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Repatriación<br>a México</p>
+                    </div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Servicio<br>Funerario</p>
+                    </div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Seguro<br>de Vida</p>
+                    </div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Educación<br>Financiera</p>
+                    </div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Cuenta<br>Digital</p>
+                    </div>
+                  </div>
+                  <div clas="clear15">&nbsp;</div>
+                  <div class="row mt-2 vCenter text-center" *ngFor="let itemB of arrResumen; let i = index">
+
+                    <div class="col-2">
+                      <div class="tipobeneficiario">{{itemB.tipobeneficiario}}</div>
+                    </div>
+                    <ng-container *ngFor="let item of itemB.beneficioSimpleDTO">
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 1">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                      </div>
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 2">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                      </div>
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 3">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                        <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta" *ngIf="!item.activo && itemB.tipobeneficiarioid == 15">
+                        <!-- <p *ngIf="!item.activo" class="fs-10">-</p> -->
+                      </div>
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 4">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                      </div>
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 5">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="row m-2" *ngIf="edad < 51 && mostrarMsj">
+                    <div class="col-1">
+                      <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mr-2">
+                    </div>
+                    <div class="col-11">
+                      <span><small class="fontResponsiveSliderNotes">Con base en tus respuestas al cuestionario de la aseguradora, el seguro de vida no puede incluirse en tu plan.</small></span>
+                    </div>
+                  </div>
+                  <div class="row m-2" *ngIf="(edad >= 51 && edad <= 58) && mostrarMsj">
+                    <div class="col-1">
+                      <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mr-2">
+                    </div>
+                    <div class="col-11">
+                      <span><small class="fontResponsiveSliderNotes">El seguro de vida no se incluye en el Plan Base por tu edad. Podrás contratarlo dentro de la aplicación con costo adicional, sujeto a elegibilidad.</small></span>
+                    </div>
+                  </div>
+                  <!-- <div class="row m-2" *ngIf="(edad > 56 && edad < 58)">
+                    <div class="col-1">
+                      <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mr-2">
+                    </div>
+                    <div class="col-11">
+                      <span><small class="fontResponsiveSliderNotes">El seguro de vida no se incluye en el Plan Base por tu edad. Podrás contratarlo dentro de la aplicación con costo adicional, sujeto a elegibilidad.</small></span>
+                    </div>
+                  </div> -->
+                  <div class="row m-2" *ngIf="edad > 58 && mostrarMsj">
+                    <div class="col-1">
+                      <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mr-2">
+                    </div>
+                    <div class="col-11">
+                      <span><small class="fontResponsiveSliderNotes">El seguro de vida no está disponible por tu edad.</small></span>
+                    </div>
+                  </div>
+                  <!-- Beneficios a la medida -->
+                  <ng-container *ngIf="arrResumenAlaMedida.length > 0">
+                  <div class="mt-2 row">
+                    <div class="col-12 text-center">
+                      <img src="../../../assets/img/icons/alamedida.svg" class="img-propuesta">
+                      <span><b> Beneficios a la Medida</b></span>
+                      <br>
+                      <span><b> Disponibles con costo adicional</b></span>
+                    </div>
+                  </div>
+                  <div class="row mt-2 vCenter text-center rowTable">
+                    <div class="col-2"></div>
+                    <div class="col-2 center-flex">
+                      <img src="../../../assets/img/icons/llamadas-ilimitadas.svg" class="img-propuesta-ico-table ml-2">
+                    </div>
+                  </div>
+                  <div class="row vCenter mt-1 text-center bb-1">
+                    <div class="col-2"></div>
+                    <div class="col-2 center-flex">
+                      <p class="fontResponsiveTableText">Llamadas <br>Ilimitadas</p>
+                    </div>
+                  </div>
+                  <div clas="clear15">&nbsp;</div>
+                  <div class="row mt-2 vCenter text-center" *ngFor="let itemB of arrResumenAlaMedida; let i = index">
+
+                    <div class="col-2">
+                      <div class="tipobeneficiario">{{itemB.tipobeneficiario}}</div>
+                    </div>
+                    <ng-container *ngFor="let item of itemB.beneficioSimpleDTO">
+                      <div class="col-2 center-flex" *ngIf="item.beneficioId == 16">
+                        <img src="../../../assets/img/icons/bien.svg" class="img-propuesta" *ngIf="item.activo">
+                      </div>
+                    </ng-container>
+                  </div>
+                </ng-container>
+                  <!-- Fin Beneficios a la medida -->
+                </div>
+                <div class="col-md-5 offset-md-1 col-sm-12 col-12 vh-100">
+                  <div class="card cardBeneficios">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12 text-center mb-1 mt-1">
+                          <p class="fontResponsiveSliderNotes mb-1"><b>Da click tu forma de pago</b></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="text-center mb-1 col-12">
+                          <!-- <div class="text-center mb-1" [ngClass]="{'col-12': arrResumenAlaMedida.length > 0, 'col-6': arrResumenAlaMedida.length == 0}"> -->
+                          <div class="btn btn-inactive-pagos mb-1 mt-1" [ngClass]="{'btn-pink': tipoPago == 20}" (click)="changeFormaPago(20)">Tarjeta</div>
+                        </div>
+                        <!-- <div class="col-6 text-center mb-1" *ngIf="arrResumenAlaMedida.length == 0">
+                          <div class="btn btn-inactive-pagos mb-1 mt-1 disabled" [ngClass]="{'btn-purple': tipoPago == 21}" (click)="changeFormaPago(21)">Efectivo</div>
+                        </div> -->
+                      </div>
+                      <div class="row">
+                        <div class="text-center mb-1 col-12">
+                          <p class="fontResponsiveSliderNotes"><b>Da click aquí si tu tarjeta es de un banco mexicano</b></p>
+                          <p-inputSwitch [(ngModel)]="tarjetaMexico" [ngModelOptions]="{standalone: true}" (onChange)="actualizarPrecio()"></p-inputSwitch>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card cardBeneficios">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-12 text-center mb-1 mt-1">
+                          <!-- <p class="fontResponsiveSliderNotes mb-1"><b>Selecciona la frecuencia de pago</b></p> -->
+                          <p class="fontResponsiveSliderNotes mb-1"><b>Da click en el monto a pagar</b></p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <!-- <div class="text-center mb-1" [ngClass]="{'col-12': arrResumenAlaMedida.length > 0, 'col-6': arrResumenAlaMedida.length == 0}"> -->
+                          <div class="text-center mb-1 col-12">
+                          <p class="fontResponsiveSliderNotes">Cuánto pagarás cada mes</p>
+                          <div class="btn btn-inactive-pagos mb-1 mt-1" [ngClass]="{'btn-pink': frecuenciaPago == 65}" (click)="changeFrecuenciaPago(65)">${{precioMensual + precioMensualAlaMedida}} {{currency}}</div>
+                          <p class="fontResponsiveSliderNotes">1er. Pago de ${{(+precioMensual) + (precioMensualAlaMedida) + (precioGastoAdmon)}} {{currency}} <sup>*</sup></p>
+                        </div>
+                        <!-- <div class="col-6 text-center mb-1" *ngIf="arrResumenAlaMedida.length == 0">
+                          <p class=" fontResponsiveSliderNotes">Pago anual</p>
+                          <div class="btn btn-inactive-pagos mb-1 mt-1" [ngClass]="{'btn-purple': frecuenciaPago == 64}" (click)="changeFrecuenciaPago(64)" >${{precioAnual}} USD</div>
+                          <p class="fontResponsiveSliderNotes">1er. Pago de ${{(+precioAnual) + (5)}} USD <sup>*</sup></p>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row mt-1 text-left">
+                    <div class="col-12">
+                      <p class="condiciones fontResponsiveSliderNotes">*Tu primer pago incluye un cargo administrativo de {{precioGastoAdmon | currency}} {{currency}} por única vez.</p>
+                      <div style="display: inline-flex;
+                      align-content: flex-start;
+                      justify-content: center;
+                      align-items: center;" >
+                      <mat-checkbox class="example-margin text-center" [(ngModel)]="checkedAviso"
+                        ngInit="checked=true">
+                      </mat-checkbox>
+                      <span class="condiciones  fontResponsiveSliderNotes cursor-pointer mt-2">
+                        <u>
+                          <a (click)="openModal('a')">Acepto los T&eacute;rminos & Condiciones</a>&nbsp;y&nbsp;<a (click)="openModal('b')">el Aviso de Privacidad de la contratación.</a>
+                        </u>
+                      </span>
+                    </div>
+                      <!-- <p class="condiciones p-aviso fontResponsiveSliderNotes cursor-pointer mt-2" (click)="openModal(checkedAviso)">
+                        Acepto los T&eacute;rminos & Condiciones y el Aviso de Privacidad de la contratación.
+                      </p> -->
+                      <button class="btn btn-blue btn-block mt-1" (click)="aceptarPropuesta()" *ngIf="tipoPago != 0 && frecuenciaPago !=0 && checkedAviso">
+                        Continuar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#e31c79" type = "square-jelly-box" [fullScreen] = "true"></ngx-spinner>
+<!--Login Page Ends-->
+
+<p-dialog header="Header" [(visible)]="displayModalPdf" [modal]="true" [transitionOptions]="'0ms'"
+  [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw'}" [draggable]="false" [resizable]="false" header="">
+  <div class="col-12 vCenter">
+    <pdf-viewer [src]="stringSource"
+    [render-text]="true"
+    [original-size]="true"
+    [fit-to-page]="true"
+    [autoresize]="true"
+    style="width: 800px; height: 600px">
+    </pdf-viewer>
+
+  </div>
+</p-dialog>

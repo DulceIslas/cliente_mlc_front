@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>PAGOS</h1>
+    </div>
+
+    <div class="tabla4 vCenter">
+      <div class="contenidos">
+        <div class="columna">
+          <p class="text-negrita-pagos">Tipo de plan:</p>
+          <p class="txt-normal-pagos">{{tipoPlan}}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Membresía:</p>
+          <p class="txt-normal-pagos">{{membresia}}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Fecha de contratación:</p>
+          <p class="txt-normal-pagos">{{fechaContratacion | date: 'dd-MMM-yyyy'}}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Fecha de pago*:</p>
+          <p class="txt-normal-pagos">{{periodoPago}}</p>
+        </div>
+      </div>
+      <div class="contenidos">
+        <div class="columna">
+          <p class="text-negrita-pagos">Forma de pago:</p>
+          <p class="txt-normal-pagos">{{formaPago}}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Frecuencia de pago:</p>
+          <p class="txt-normal-pagos">{{frecuenciaPago}}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Próximo pago:</p>
+          <p class="txt-normal-pagos">{{fechaProximoPago | date: 'dd-MMM-yyyy': 'mediumDate' }}</p>
+        </div>
+        <div class="columna">
+          <p class="text-negrita-pagos">Monto a pagar:</p>
+          <p class="txt-normal-pagos">{{monto | currency}} {{currency}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row col-8 offset-2 vCenter">
+      <p class="txt-normal-pagos">*Tus beneficios empiezan con tu fecha de contratación</p>
+    </div>
+    <div class="row col-8 offset-2 vCenter">
+      <button type="button" class="btn-pagar">Pagar</button>
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 offset-xl-2 offset-lg-2" ngClass.sm="container" ngClass.xs="container">
+      <div class="row vCenter">
+          <div class="col-5 linea mb-1">
+            <p class="text-negrita-pagos">Fecha de pago:</p>
+          </div>
+          <div class="col-4 linea mb-1">
+            <p class="text-negrita-pagos">Transacción:</p>
+          </div>
+          <div class="col-3 linea mb-1">
+            <p class="text-negrita-pagos">Monto:</p>
+          </div>
+      </div>
+        <div class="row">
+          <ng-container *ngFor="let item of pagos">
+            <div class="col-5 vCenter">
+              <p class="txt-negrita-pagos">{{item.fechaPago | date: 'dd-MMM-yyyy'}}</p>
+            </div>
+            <div class="col-4 vCenter">
+              <p class="txt-negrita-pagos">{{item.transaccion | slice: -6}}</p>
+            </div>
+            <div class="col-3 vCenter">
+              <p class="txt-negrita-pagos">{{item.montoPago | currency}} {{item.moneda}}</p>
+            </div>
+          </ng-container>
+          <!-- <div class="columna">
+            <div class="tabla3">
+              <div class="contenidos">
+                <div class="columna">
+                  <img src="../../../assets/img/icons/descargar.svg" />
+                </div>
+                <div class="columna">
+                  <img src="../../../assets/img/icons/email.svg" />
+                </div>
+                <div class="columna">
+                  <img src="../../../assets/img/icons/descargar.svg" />
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#e31c79" type = "square-jelly-box" [fullScreen] = "true"></ngx-spinner>

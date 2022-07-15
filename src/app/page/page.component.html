@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="mi-perfil col-12">
+      <h1>Mi Perfil</h1>
+    </div>
+  </div>
+  <div class="row text-plan">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 p-2 vCenter">
+      <div class="negrita fs-1-3">{{nombre}}</div>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+      <button type="button" class="btn btn-purple">
+        Cambiar foto de perfil
+      </button>
+    </div>
+  </div>
+    <div class="row vCenter text-plan">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class="fs-1 negrita">CURP</div>
+        <div class="">{{curp}}</div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class=" negrita">Fecha de nacimiento</div>
+        <div class="">{{fechaNacimineto | date: 'dd-MMM-yyyy'}}</div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class="negrita">Sexo</div>
+        <div class="">{{sexo}}</div>
+      </div>
+    </div>
+    <div class="row vCenter text-plan">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class="negrita">Estado de origen</div>
+        <div class="">{{estadoOrigen}}</div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class="negrita">País donde trabaja</div>
+        <div class="">{{PaisTrabajo}}</div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2">
+        <div class="negrita">Estado/Provincia donde trabaja</div>
+        <div class="">{{estadoTrabajo}}</div>
+      </div>
+    </div>
+    <div class="row vCenter text-plan">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2 vCenter">
+        <div class="row">
+          <div class="col-12">
+            <div class="negrita">Teléfono</div>
+            <div class="">{{ladapais}} {{telefono}}</div>
+          </div>
+          <!-- <div class="col-3 text-right">
+            <img class="mw-40 pl-2" src="../../assets/img/icons/anadir.svg" />
+          </div> -->
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 pt-2 vCenter">
+        <div class="row">
+          <div class="col-12">
+            <div class="negrita">&nbsp;&nbsp;&nbsp;E-mail&nbsp;&nbsp;</div>
+            <div class="">{{mail}}</div>
+          </div>
+          <!-- <div class="col-3 text-right">
+            <img class="mw-40 pl-2" src="../../assets/img/icons/anadir.svg" />
+          </div> -->
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 pt-2">
+        <button type="button" class="btn btn-orange" (click)="openModalContra(modalPwd, false)">
+          Cambiar contraseña
+        </button>
+
+      </div>
+    </div>
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#e31c79" type = "square-jelly-box" [fullScreen] = "true"></ngx-spinner>
+
+    <ng-template #modalPwd let-c="close" let-d="dismiss">
+      <div class="container">
+          <div class="modal-header bg-gray">
+              <div class="col-md-6 offset-md-3">
+
+                  <h2 class="modal-title text-dark">Cambiar contraseña</h2>
+              </div>
+
+              <button type="button" class="close text-dark" aria-label="Close" (click)="d('Cross click');"><span class="p-dialog-header-close-icon ng-tns-c302-0 pi pi-times" ng-reflect-ng-class="pi pi-times"></span></button>
+          </div>
+          <div class="row bg-gray">
+              <div class="col-md-12 p-0">
+                  <hr class="separador mb-0 mt-2-s">
+              </div>
+          </div>
+      </div>
+      <div class="modal-body bg-gray">
+          <form [formGroup]="frmPass">
+              <div class="form-row">
+                  <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-sm-12 px-4 py-3">
+                      <b>Ingrese una nueva contraseña </b>
+                      <div class="form-group ">
+                          <input type="password" class="form-control" placeholder="Ingrese la contraseña" formControlName="newPassword" [ngClass]="{ 'is-invalid': passFormSubmitted && f.newPassword.invalid, 'is-valid': passFormSubmitted && !f.newPassword.invalid }">
+                          <div *ngIf="passFormSubmitted && (f.newPassword.invalid || f.newPassword.errors?.required)" class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Campo requerido
+                          </div>
+                      </div>
+                      <b>Vuelva a escribir la contraseña nueva</b>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Confirme la contraseña" formControlName="newPasswordConfirm" [ngClass]="{ 'is-invalid': passFormSubmitted && f.newPasswordConfirm.invalid, 'is-valid': passFormSubmitted && !f.newPasswordConfirm.invalid }">
+                          <div *ngIf="passFormSubmitted && (f.newPasswordConfirm.invalid || f.newPasswordConfirm.errors?.required)" class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Campo requerido
+                          </div>
+                      </div>
+                      <div class="form-row mt-2">
+                          <div class="col-md-6 offset-md-3 text-center col-sm-12" style="padding-bottom: 2px;">
+                              <input type="button" value="CAMBIAR " class="btn btn-purple btn-block mx-auto" (click)="updatePassword()">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </ng-template>

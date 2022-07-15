@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>BENEFICIOS</h1>
+    </div>
+  </div>
+  <div class="row" *ngIf="arrBeneficiariosBase.length>0">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 p-1 cursor-link" (click)="verDetalles(modalTitular, item)"
+      *ngFor="let item of arrBeneficiariosBase[0]['beneficioSimpleDTO']">
+      <img class="img-beneficios" src="../../../assets/img/icons/{{item.imagen}}-L.svg" />
+    </div>
+    <ng-container *ngIf="arrBeneficiariosAlaMedida.length > 0">
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 p-1 cursor-link" (click)="verDetalles(modalTitular, item)"
+        *ngFor="let item of arrBeneficiariosAlaMedida[0]['beneficioSimpleDTO']">
+        <img class="img-beneficios" src="../../../assets/img/icons/{{item.imagen}}-L.svg" />
+      </div>
+    </ng-container>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#e31c79" type="square-jelly-box" [fullScreen]="true">
+</ngx-spinner>
+
+
+
+<ng-template #modalTitular let-c="close" let-d="dismiss">
+
+  <div class="modal-header pb-0">
+    <div class="col-12 text-center">
+      <img src="../../../assets/img/icons/{{imagen}}.svg" class="img-normal" />
+      <h2>{{titulobeneficio}}</h2>
+      <button type="button" class="close p-dialog-header-icon p-dialog-header-close p-link p-ripple ng-star-inserted"
+        aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="p-dialog-header-close-icon pi pi-times"></span>
+      </button>
+
+    </div>
+
+  </div>
+  <div class="modal-body pt-0">
+    <div class="col-md-12 p-0">
+      <hr class="separador mt-1 mb-0" />
+    </div>
+    <div class="row m-2">
+      <div class="col-12 text-center">
+        <div class="negrita fontResponsive">{{nombre}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+        <div class="negrita fontResponsive">Número de plan</div>
+        <div class="">{{membresia}}</div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+        <div class="negrita fontResponsive">Certificado</div>
+        <img src="../../../assets/img/icons/descargar.svg" class="mr-1" ngClass.sm="img-responsive"
+          ngClass.xs="img-responsive">
+        <img src="../../../assets/img/icons/email.svg" class="mr-1" ngClass.sm="img-responsive"
+          ngClass.xs="img-responsive" />
+        <img src="../../../assets/img/icons/ver.svg" class="mr-1" ngClass.sm="img-responsive"
+          ngClass.xs="img-responsive" />
+        <!-- <div class="">{{estadoOrigen}}</div> -->
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 text-center">
+        <div class="negrita">CHUBB</div>
+        <div class="">{{anemex}}</div>
+      </div>
+    </div>
+    <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col linea" *ngFor="let item of arrBeneficiariosBase; let i = index">
+          <img src="../../../assets/img/titular/{{ item.imagendefault }}.svg" class="img-normal" />
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="BeneficioId < 16">
+        <div class="col center-flex linea" *ngFor="let itemC of arrBeneficiariosBase">
+          <ng-container *ngFor="let itemBS of itemC['beneficioSimpleDTO']">
+            <img src="../../../assets/img/icons/bien.svg" class="img-propuesta mb-2" *ngIf="itemBS.beneficioId == BeneficioId && itemBS.activo" />
+            <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mb-2" *ngIf="itemBS.beneficioId == BeneficioId && !itemBS.activo" />
+          </ng-container>
+        </div>
+      </div>
+      <div class="row mt-2" *ngIf="BeneficioId >= 16">
+        <div class="col center-flex linea" *ngFor="let itemC of arrBeneficiariosAlaMedida">
+          <ng-container *ngFor="let itemBS of itemC['beneficioSimpleDTO']">
+            <img src="../../../assets/img/icons/bien.svg" class="img-propuesta mb-2" *ngIf="itemBS.beneficioId == BeneficioId && itemBS.activo" />
+            <img src="../../../assets/img/icons/sin-plan.svg" class="img-propuesta mb-2" *ngIf="itemBS.beneficioId == BeneficioId && !itemBS.activo" />
+          </ng-container>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Empieza fila -->
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-2 text-left mb-1">
+          <img src="../../../assets/img/icons/bien.svg" />Incluido en el plan
+        </div>
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-0 text-left mb-1">
+          <img src="../../../assets/img/icons/contratado.svg" />Adquirido
+        </div>
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-2 text-left mb-1">
+          <img src="../../../assets/img/icons/moneda.svg" />Disponible con costo adicional
+        </div>
+        <!-- Termina fila -->
+        <!-- Empieza fila -->
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-0 text-left mb-1">
+          <img src="../../../assets/img/icons/sin-plan.svg" />No disponible
+        </div>
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-2 text-left mb-1">
+          <img src="../../../assets/img/icons/advertencia.svg" />Falta
+          información
+        </div>
+        <div
+          class="fila33 col-lg-4 col-md-5 col-sm-4 col-8 offset-4 offset-lg-0 offset-md-1 offset-sm-0 text-left mb-1">
+          <img src="../../../assets/img/icons/reloj.svg" />En proceso
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>

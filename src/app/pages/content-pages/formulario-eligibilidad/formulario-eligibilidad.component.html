@@ -1,0 +1,102 @@
+<!--Login Page Starts-->
+<div class="container-fluid header">
+  <!-- Empieza header-->
+  <div class="row bg-white p-2">
+    <div class="col-2 float-left" ngClass.sm="text-center" ngClass.xs="col-12 text-center">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header">
+    </div>
+    <div class="col-10 text-left" style="padding-left:16%; ">
+      <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="w-50 mt-2 tranquilidad-a-tu-alcance">
+    </div>
+  </div>
+  <!-- Termina header-->
+</div>
+<hr class="separador mt-0 mb-0" ngStyle.xl="display:block" ngStyle.lg="display:block" ngStyle.md="display:block"
+  ngStyle.sm="display:block" ngStyle.xs="display:none" />
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-12 text-center p-0" *ngIf="index == 0">
+      <h2 class="mb-0">
+        <b>Cuestionario de la aseguradora</b>
+      </h2>
+      <hr class="separador mt-2-s mb-2" />
+    </div>
+    <div class="col-12 text-center p-0" *ngIf="index == 1 || index == 2 || index == 3 || index == 4">
+      <h2 class="mb-0">Declaración de Salud</h2>
+      <!-- <h3 class="mb-0">¿Cómo está tu salud?</h3> -->
+      <hr class="separador mt-3 mb-2" />
+    </div>
+    <div class="col-12 text-center p-0" *ngIf="index == 5">
+      <h2 class="mb-0">
+        Actividades y deportes profesionales
+      </h2>
+      <hr class="separador mt-2-s mb-2" />
+    </div>
+    <div class="col-12 text-center p-0" *ngIf="index == 6">
+      <h2 class="mb-0">
+        Actividades y deportes profesionales
+      </h2>
+      <hr class="separador mt-2-s mb-2" />
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-2">
+  <div class="row m-0">
+    <div class="col-12">
+      <mat-stepper [linear]="true" class="stepper-eligibilidad" #stepper>
+        <mat-step label="">
+          <div class="mt-4 text-center">
+            <p>
+              Ya estamos por terminar.
+            </p>
+            <br>
+            <p>
+              Por favor responde las preguntas que pide la aseguradora para ver si puede
+            </p>
+            <p>
+              ofrecerte el seguro de vida del plan (pueden ser 4 o 5 preguntas, según tu sexo).
+            </p>
+            <br>
+            <p>
+              Lee con atención y responde con honestidad.
+            </p>
+            <div class="row mt-4">
+              <div class="col-12 text-center">
+                <button class="btn btn-blue" (click)="changeStepInicial(stepper)" *ngIf="cuestionario.length > 0"
+                  style="width: 21rem;">Continuar</button>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+        <mat-step label="" *ngFor="let pregunta of cuestionario; let i = index">
+          <form>
+            <div>
+              <div class="container">
+                <div class="row vCenter">
+                  <div class="col-md-6 col-sm-12">
+                    <span [innerHTML]="pregunta.descripcionPregunta"></span>
+                  </div>
+                  <div class="col-sm-12 col-md-6 text-center mt-2 mb-2">
+                    <mat-radio-group #chk aria-label="Selecciona una opción"
+                      [ngClass]="{'disable-click': pregunta.respuesta == 'si' || pregunta.continua}"
+                      (change)="pregunta.selected = true; seleccionarRespuesta(i, $event.value);">
+                      <mat-radio-button value="si" [checked]="pregunta.respuesta == 'si'">Sí</mat-radio-button>
+                      <mat-radio-button value="no" [checked]="pregunta.respuesta == 'no'">No</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <div class="col-sm-12 col-md-6 text-center mt-2" *ngIf="pregunta.selected">
+                    <button class="btn btn-blue" (click)="changeStep(stepper, i, chk.value, $event)"
+                      style="width: 21rem;">Continuar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#e31c79" type="square-jelly-box" [fullScreen]="true">
+</ngx-spinner>
+<!--Login Page Ends-->

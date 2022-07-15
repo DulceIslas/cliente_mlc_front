@@ -1,0 +1,119 @@
+body {
+  overflow: hidden !important;
+}
+
+.alert-light-danger {
+  background-color: #FEEFD0 !important;
+  color: #F55252  !important;
+  border-color: #FEEFD0;
+}
+
+.pi-times:before {
+  content: "\e90b";
+  color: #fff;
+  background-color: #e31c79;
+  border-radius: 20px;
+  padding: 6px;
+}
+
+.img-header {
+  max-width: 120px;
+  max-height: 63px;
+
+}
+.img-header-tranquilidad {
+
+  height: 3.5rem;
+  margin: .5rem 0 0 13rem;
+  border: 0px solid #333;
+float: left;
+
+}
+
+hr, .bg-white, .p-2 {
+  margin: 0 !important;
+}
+
+.separador {
+  border: 0;
+  height: 4px;
+  background: linear-gradient(to right, #E31C79 0%, #E31C79 20%, #3ccce1 20%, #3ccce1 40%, #f7a11f 40%, #f7a11f 60%, #6ab336 60%, #6ab336 100%)
+  }
+
+
+  .fontResponsive {
+    font-size: calc(0.7em + 0.1vw);
+  }
+
+  .img-thumbnail {
+    border: none !important;
+  }
+
+  .fontResponsiveSlider {
+    font-size: calc(0.75em + 0.75vmin);
+    margin-bottom: 2px;
+  }
+
+  .fontResponsiveSliderNotes {
+    font-size: calc(0.5em + 0.7vmin);
+    margin-bottom: 2px;
+  }
+
+  ngb-carousel {
+    // height: 387px !important;
+  }
+
+  .player-wrapper {
+    height: 70%;
+    width: 75%;
+  }
+
+  .titulo-amarillo {
+    color: #f7a11f;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+
+
+
+  @media screen and (max-width: 667px) {
+  .tranquilidad-a-tu-alcance {
+    display:none;
+    }
+  }
+  @media screen and (max-width: 800px) {
+
+    .img-header {
+      max-width: 120px;
+      max-height: 63px;
+    }
+
+    .img-header-tranquilidad {
+      visibility: hidden;
+      clear: both;
+      float: left;
+      margin: 10px auto 5px 20px;
+      width: 28%;
+      display: none;
+    }
+
+    .player-wrapper {
+      height: 90%;
+      width: 90%;
+    }
+    .card {
+      background-color: #fff;
+      border: 1px solid #000;
+      min-width: 15em !important;
+    }
+
+  }
+
+  @media screen and (max-width: 1000px) {
+
+    .player-wrapper {
+      height: 90%;
+      width: 90%;
+    }
+  }

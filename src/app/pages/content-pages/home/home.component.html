@@ -1,0 +1,121 @@
+<!--Home Page Starts-->
+
+<!-- Empieza header-->
+<div class="row bg-white p-2">
+  <div class="col-2 float-left" ngClass.sm="text-center" ngClass.xs="col-12 text-center" >
+    <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header">
+  </div>
+  <div class="col-10 text-left" style="padding-left:16%; ">
+    <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="w-50 mt-2 tranquilidad-a-tu-alcance" >
+  </div>
+</div>
+<!-- Termina header-->
+
+  <hr class="separador" />
+
+  <div class="clear10"></div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class=" overflow-hidden">
+          <div class="p-2">
+            <span class="titulo-amarillo">¡Bienvenido!</span>
+          </div>
+          <div class="card-content">
+            <div class="card-body auth-img">
+              <div class="row m-0 containerCenter">
+                <div class="col-lg-8 offset-lg-2 col-sm-12 px-4 py-3">
+                  <form [formGroup]="loginForm">
+                    <div class="form-group">
+                      <input type="text" formControlName="username" class="form-control" placeholder="Email"
+                        [ngClass]="{ 'is-invalid': (loginFormSubmitted && lf.username.invalid) || isLoginFailed,
+                        'is-valid': (loginFormSubmitted && !lf.username.invalid) }"
+                        required>
+                      <div *ngIf="loginFormSubmitted && (lf.username.invalid || lf.username.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Campo
+                        requerido</div>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" formControlName="password" class="form-control" placeholder="Contraseña"
+                        [ngClass]="{ 'is-invalid': (loginFormSubmitted && lf.password.invalid) || isLoginFailed,
+                        'is-valid': (loginFormSubmitted && !lf.password.invalid) }"
+                        required>
+                      <div *ngIf="loginFormSubmitted && (lf.password.invalid || lf.password.errors?.required)"
+                        class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> Campo
+                        requerido
+                      </div>
+                    </div>
+                    <div class="">
+                      <a class="btn btn-blue btn-block mt-4 mb-2" (click)="onSubmit()">Entrar</a>
+                      <a class="m-3" (click)="openModalRecover(modalRegistro, false)"><u>Olvidé mi contraseña</u></a>
+                      <a  class="btn btn-pink btn-block btn-lg mt-2 mb-2" [routerLink] = "['/pages/video']">Quiero ser cliente</a>
+                      <p>Ya inicié mi solicitud:</p>
+                      <a  class="btn btn-green btn-block btn-lg mt-2" (click)="completarContratacion()">Completar contratación</a>
+                    </div>
+
+                  </form>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #modalRegistro let-c="close" let-d="dismiss">
+    <div class="container">
+        <div class="modal-header bg-gray">
+            <div class="col-md-6 offset-md-3">
+
+                <h2 class="modal-title text-dark">Recuperación de contraseña</h2>
+            </div>
+
+            <button type="button" class="close text-dark" aria-label="Close" (click)="d('Cross click');"><span class="p-dialog-header-close-icon ng-tns-c302-0 pi pi-times" ng-reflect-ng-class="pi pi-times"></span></button>
+        </div>
+        <div class="row bg-gray">
+            <div class="col-md-12 p-0">
+                <hr class="separador mb-0 mt-2-s">
+            </div>
+        </div>
+    </div>
+    <div class="modal-body bg-gray">
+        <form [formGroup]="frmRecover">
+            <div class="form-row">
+                <div class="col-md-12 col-sm-12 mt-1">
+                    <h3><strong style="font-family: 'Montserrat', sans-serif;">Ingresa tu CURP</strong></h3>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 offset-md-4 text-center col-sm-12 mt-1">
+                    <input [maxlength]=18 type="text" class="form-control input-form-datos curp" formControlName="curp" placeholder="CURP" [ngClass]="{
+                    'is-invalid': submittedRecovery && f.curp.invalid,
+                    'is-valid': submittedRecovery && !f.curp.invalid
+                  }">
+                    <div *ngIf="
+                  submittedRecovery &&
+                  f.curp.errors?.required
+                " class="help-block mt-1 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> Campo requerido.
+                    </div>
+                    <div *ngIf="submittedRecovery && (f.curp.errors?.maxlength || f.curp.errors?.minlength)" class="text-danger">La CURP debe ser de 18 dígitos.
+                    </div>
+                    <div *ngIf="submittedRecovery && f.curp.errors?.pattern" class="text-danger">El formato de la CURP no es correcto.
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col-md-4 offset-md-4 text-center col-sm-12 mt-1 center" style="padding-bottom: 2px;">
+                    <input type="button" value="Enviar" class="btn btn-purple btn-block mx-auto" (click)="enviarCorreo()">
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+</ng-template>
+
+<!--Home Page Ends-->
