@@ -1,0 +1,184 @@
+.form-control {
+  padding: 0 !important;
+}
+
+
+.img-header {
+  max-width: 120px;
+  max-height: 63px;
+}
+.img-header-tranquilidad {
+  max-height: 63px;
+
+}
+
+p {
+  margin: 0px !important;
+  white-space: pre-line;
+}
+
+h2 {
+  line-height: 20px;
+}
+
+.pointerEvents {
+  pointer-events: none;
+  cursor: none;
+}
+
+.separador {
+  border: 0;
+  height: 4px;
+  background: linear-gradient(to right, #E31C79 0%, #E31C79 20%, #3ccce1 20%, #3ccce1 40%, #f7a11f 40%, #f7a11f 60%, #6ab336 60%, #6ab336 100%)
+  }
+
+  .fontResponsive {
+    font-size: calc(0.7em + 0.3vw);
+    color:#454F63;
+    font-family: "Monserrat", sans-serif !important;
+  }
+
+  .img-thumbnail {
+    border: none !important;
+  }
+
+  .fontResponsiveFamilia {
+    font-size: calc(0.75em + 0.2vw);
+  }
+
+  .fontResponsiveSlider {
+    font-size: calc(0.75em + 0.75vmin);
+  }
+
+  .fontResponsiveSliderNotes {
+    font-size: calc(0.5em + 0.7vmin);
+  }
+
+  .fontResponsiveTableText {
+    font-size: calc(0.5em + 0.2vmin);
+    line-height: 10px;
+  }
+
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #E31C79 !important;
+  }
+
+  .mat-horizontal-stepper-header::before, .mat-horizontal-stepper-header::after, .mat-stepper-horizontal-line {
+    border: 0;
+    height: 4px;
+    background: linear-gradient(to right, #E31C79 0%, #E31C79 25%, #3ccce1 25%, #3ccce1 50%, #f7a11f 50%, #f7a11f 75%, #6ab336 75%, #6ab336 100%);
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+
+  .mat-slide-toggle {
+    padding: 0rem 1rem;
+  }
+
+  .img-50 {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .img-hover:hover {
+    border: 2px solid #E31C79 !important;
+  }
+
+  .lh-13 {
+    line-height: 13px;
+  }
+
+  .col-familia .mat-slide-toggle-thumb {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+
+  .col-familia .mat-slide-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .cardBeneficios {
+    margin: 5px 0;
+  }
+
+  .bb-1 {
+    border-bottom: 1px solid;
+  }
+
+  .btn-listo {
+    background: #6AB33533;
+    border-color: #6AB335 !important;
+    // color: #6AB335 !important;
+    font-size: .7em;
+    float: center;
+    margin: 0 .5em 0 0 !important;
+    font-family: "Montserrat", sans-serif !important;
+    min-height: 2em !important;
+    padding: 0.5em;
+
+  }
+
+  .btn-incompleto {
+    background: #E0217634;
+    border-color: #E02176 !important;
+    // color: #E02176 !important;
+    font-size: .7em;
+    float: center;
+    margin: 0 .5em 0 0 !important;
+    font-family: "Montserrat", sans-serif !important;
+    min-height: 2em !important;
+    padding: 0.5em;
+
+  }
+
+  .spanLada {
+    background-image: url(../../../../assets/img/flags/ca.svg);
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    display: block;
+  }
+
+  .spanLada::before {
+    content: url("../../../../assets/img/flags/ca.svg");
+  }
+
+
+::ng-deep {
+  .p-disabled, .p-disabled * {
+    cursor: default !important;
+    pointer-events: none;
+    border: none !important;
+  }
+
+  body {
+    overflow-x: hidden!important;
+    overflow-y: scroll !important;
+  }
+
+  @media screen and (max-width: 400px){
+    .stepper-datos-formulario {
+        height: 110vh;
+    }
+  }
+
+}
+
+
+  @media screen and (max-width: 800px) {
+    .img-header-tranquilidad {
+      visibility: hidden;
+      clear: both;
+      float: left;
+      margin: 10px auto 5px 20px;
+      width: 28%;
+      display: none;
+
+    }
+  }
+
+
