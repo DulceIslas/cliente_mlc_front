@@ -1,0 +1,152 @@
+<div
+  class="container-fluid"
+  ngStyle.xl="display:block"
+  ngStyle.lg="display:block"
+  ngStyle.md="display:block"
+  ngStyle.sm="display:block"
+  ngStyle.xs="display:none"
+>
+  <div class="row bg-white">
+    <div class="col-2 text-center pt-1">
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header" />
+    </div>
+    <div class="col-10 text-center pt-1">
+      <img src="../../../../assets/img/logos/tranquilidad-a-tu-alcance.svg" class="img-header-tranquilidad" />
+    </div>
+    <div class="col-md-12 p-0">
+      <hr class="separador mt-1 mb-0" />
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row d-flex-center mt-0">
+    <div class="col-12 text-center p-0" ngStyle.lg="display:none" ngStyle.md="display:none" ngStyle.sm="display:none" >
+      <img src="../../../../assets/img/logos/mexico-lindo-contigo.svg" class="img-header-tranquilidad" />
+    </div>
+  </div>
+
+</div>
+<div class="container-fluid">
+  <div class="row bg-white align-items-center" *ngIf="estatusPropuesta == 4">
+    <div class="col-12 text-center p-0 mt-2">
+      <div class="offset-md-0">
+        <div class=" text-center ">
+          <h2>Autorización</h2>
+          <hr class="separador" />
+          <div class="pl-4 pr-4">
+            ¡Listo! Dale tu CURP al promotor para que autorice tu pago.
+          </div>
+          <div class="card ml-4 mr-4">
+            <div class="card-body">
+              <p>Tu CURP</p>
+              <h2 class="curp">{{ curp }}</h2>
+              <button class="btn btn-blue mb-2" (click)="verificar()">Verificar autorización</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf="estatusPropuesta == 5">
+    <!-- <div class="container-fluid"> -->
+    <div class="row mt-4">
+      <div class="col-md-10 offset-md-1 col-12">
+        <div class="row">
+          <div class="col-12 col-lg-6 col-md-12">
+            <h2 class="mb-1 text-center">
+              Resumen del pago
+            </h2>
+            <div class="card" *ngIf="arrPlan">
+              <div class="row" *ngFor="let item of arrPlan">
+                <div class="col-7 ml-1">
+                  <p class="fontResponsiveSlider">{{item.descripcionPlan}}</p>
+                </div>
+                <div class="col-4 text-right mr-1">
+                  <p class="fontResponsiveSlider" *ngIf="frecuenciaPago != 'Anual'">${{item.total}} {{currency}}</p>
+                  <p class="fontResponsiveSlider" *ngIf="frecuenciaPago == 'Anual'">${{item.costo}} {{currency}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-7 ml-1">
+                  <p class="fontResponsiveSlider">Gastos administrativos (pago único)</p>
+                </div>
+                <div class="col-4 text-right mr-1">
+                  <p class="fontResponsiveSlider">${{gastos}} {{currency}}</p>
+                </div>
+              </div>
+              <div class="row font-weight-bolder">
+                <div class="col-7 ml-1">
+                  <p class="fontResponsiveSlider">Total</p>
+                </div>
+                <div class="col-4 text-right mr-1">
+                  <p class="fontResponsiveSlider" *ngIf="frecuenciaPago != 'Anual'">${{total}} {{currency}}</p>
+                  <p class="fontResponsiveSlider" *ngIf="frecuenciaPago == 'Anual'">${{totalAnual}} {{currency}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 col-md-12 text-center">
+            <h2 class="mb-1">
+              Ingresa los datos de tu tarjeta para realizar el pago
+            </h2>
+            <form
+              novalidate
+              (ngSubmit)="createToken()"
+              [formGroup]="stripeTest"
+              class="card p-4"
+            >
+              <input
+                type="text"
+                class="form-control mb-3"
+                formControlName="name"
+                placeholder="Ingresa tu nombre"
+              />
+              <ngx-stripe-card
+                [options]="cardOptions"
+                [elementsOptions]="elementsOptions"
+              ></ngx-stripe-card>
+
+              <button type="submit" class="btn btn-blue mt-3">Pagar</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- <button (click)="makePayment(1)" class="btn btn-danger btn-block">Pay $15</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#e31c79" type = "square-jelly-box" [fullScreen] = "true"></ngx-spinner>
+<p-dialog
+  header="Header"
+  [(visible)]="displayModalResponsive"
+  [modal]="true"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  header=""
+  (onHide)="redirect()"
+>
+  <div class="text-center">
+    <h1 class="text-white">Gracias por tu pago</h1>
+    <hr class="separador" />
+    <p class="text-white">¡Bienvenido! Revisa tu correo electrónico con los </p>
+    <p class="text-white">
+      detalles de tu cuenta y pasos a seguir.
+    </p>
+  </div>
+  <div class="mt-4">
+    <p class="text-white"><b>Clave de autorización: </b> {{numTransaccion}}</p>
+    <p class="text-white"><b>Número de plan: </b> {{membresia}}</p>
+    <p class="text-white"><b>Fecha de contratación: </b> {{fechaContratacion | date}}</p>
+    <p class="text-white"><b>Fecha de pago: </b> {{periodoPago}}</p>
+    <!-- <p class="text-white"><b>Inicio de vigencia: </b> {{fechaInicioVigencia}}</p>
+    <p class="text-white"><b>Fin de vigencia: </b> {{fechaFinVigencia}}</p> -->
+  </div>
+  <div class="mt-4">
+    <h2 class="text-white"><b>{{tituloMensaje}}</b></h2>
+    <!-- <h3 class="text-white">{{descripcionMensaje}}</h3> -->
+  </div>
+</p-dialog>
